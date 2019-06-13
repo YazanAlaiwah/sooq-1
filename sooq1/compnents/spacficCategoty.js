@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button, TouchableOpacity, Image, ScrollView } from 'react-native';
 import Header from './header';
-
+import Footer from './footer';
 import { Actions } from 'react-native-router-flux';
 // import console = require('console');
 
@@ -12,30 +12,33 @@ export default class SpacficCategory extends Component {
 
 	render() {
 		return (
-			<ScrollView>
-				<Header />
+			<View style={{ flex: 1, justifyContent: 'space-around', flexDirection: 'column' }}>
+				<ScrollView>
+					<Header />
 
-				<View>
-					{this.props.text.map((item) => {
-						return (
-							<TouchableOpacity key={item.id} name="dsfdsf" style={styles.container1} >
-								<View style={styles.container1}>
-									<Image
-										source={{
-											uri:
-												'https://assets.fireside.fm/file/fireside-images/podcasts/images/b/bc7f1faf-8aad-4135-bb12-83a8af679756/cover_medium.jpg'
-										}}
-										style={styles.photo}
-									/>
-									<View style={styles.container_text}>
-										<Text style={styles.title}>{item.specfic}</Text>
+					<View>
+						{this.props.text.map((item) => {
+							return (
+								<TouchableOpacity key={item.id} name="dsfdsf" style={styles.container1}>
+									<View style={styles.container1}>
+										<Image
+											source={{
+												uri:
+													'https://assets.fireside.fm/file/fireside-images/podcasts/images/b/bc7f1faf-8aad-4135-bb12-83a8af679756/cover_medium.jpg'
+											}}
+											style={styles.photo}
+										/>
+										<View style={styles.container_text}>
+											<Text style={styles.title}>{item.specfic}</Text>
+										</View>
 									</View>
-								</View>
-							</TouchableOpacity>
-						);
-					})}
-				</View>
-			</ScrollView>
+								</TouchableOpacity>
+							);
+						})}
+					</View>
+				</ScrollView>
+				<Footer />
+			</View>
 		);
 	}
 }

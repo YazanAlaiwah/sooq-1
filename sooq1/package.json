@@ -12,6 +12,7 @@
 		"body-parser": "^1.19.0",
 		"expo": "^33.0.0",
 		"express": "^4.17.1",
+		"firebase": "^6.1.1",
 		"jsonwebtoken": "^8.5.1",
 		"mysql2": "^1.6.5",
 		"react": "16.8.3",
@@ -21,7 +22,8 @@
 		"react-native-router-flux": "^4.0.6",
 		"react-native-vector-icons": "^6.5.0",
 		"react-native-web": "^0.11.4",
-		"sequelize": "^5.8.8"
+		"sequelize": "^5.8.8",
+		"uuid": "^3.3.2"
 	},
 	"devDependencies": {
 		"babel-preset-expo": "^5.1.1"

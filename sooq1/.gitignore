@@ -8,3 +8,24 @@ npm-debug.*
 *.orig.*
 web-build/
 web-report/
+
+# <!-- The core Firebase JS SDK is always required and must be listed first -->
+# <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-app.js"></script>
+
+# <!-- TODO: Add SDKs for Firebase products that you want to use
+#      https://firebase.google.com/docs/web/setup#config-web-app -->
+
+# <script>
+#   // Your web app's Firebase configuration
+#   var firebaseConfig = {
+#     apiKey: "AIzaSyCjI352BwJ4ZgP-QKz0TgoMtewPTeVoLrY",
+#     authDomain: "mobishop-ffcff.firebaseapp.com",
+#     databaseURL: "https://mobishop-ffcff.firebaseio.com",
+#     projectId: "mobishop-ffcff",
+#     storageBucket: "mobishop-ffcff.appspot.com",
+#     messagingSenderId: "791414047785",
+#     appId: "1:791414047785:web:df2e418219331ffe"
+#   };
+#   // Initialize Firebase
+#   firebase.initializeApp(firebaseConfig);
+# </script>

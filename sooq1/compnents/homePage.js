@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
 var arr = require('../data/sections.js');
 import Header from './header';
+import Footer from './footer';
 export default class Home extends Component {
 	constructor(props) {
 		super(props);
@@ -34,35 +35,38 @@ export default class Home extends Component {
 
 	render() {
 		return (
-			<ScrollView>
-				<View>
-					<Header />
-					<View style={styles.maincontainer}>
-						{arr.map((item) => {
-							return (
-								<TouchableOpacity
-									name="dsfdsf"
-									onPress={this.cato.bind(this, item.section)}
-									style={styles.container1}
-									key={item.section}
-								>
-									<View style={styles.container1}>
-										<Image
-											source={{
-												uri: item.uri
-											}}
-											style={styles.photo}
-										/>
-										<View style={styles.container_text}>
-											<Text style={styles.title}>{item.section}</Text>
+			<View style={{ flex: 1, justifyContent: 'space-around', flexDirection: 'column' }}>
+				<ScrollView>
+					<View>
+						<Header />
+						<View style={styles.maincontainer}>
+							{arr.map((item) => {
+								return (
+									<TouchableOpacity
+										name="dsfdsf"
+										onPress={this.cato.bind(this, item.section)}
+										style={styles.container1}
+										key={item.section}
+									>
+										<View style={styles.container1}>
+											<Image
+												source={{
+													uri: item.uri
+												}}
+												style={styles.photo}
+											/>
+											<View style={styles.container_text}>
+												<Text style={styles.title}>{item.section}</Text>
+											</View>
 										</View>
-									</View>
-								</TouchableOpacity>
-							);
-						})}
+									</TouchableOpacity>
+								);
+							})}
+						</View>
 					</View>
-				</View>
-			</ScrollView>
+				</ScrollView>
+				<Footer />
+			</View>
 		);
 	}
 }
