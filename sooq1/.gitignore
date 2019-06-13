@@ -29,3 +29,7 @@ web-report/
 #   // Initialize Firebase
 #   firebase.initializeApp(firebaseConfig);
 # </script>
+
+
+# var ref = dbh.ref().child('items/' + imageName);
+# 			return ref.put(blob);

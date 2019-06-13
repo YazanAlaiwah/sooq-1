@@ -9,11 +9,10 @@ import { Router, Scene } from 'react-native-router-flux';
 import AddItem from './compnents/additem';
 import apikeycnfig from './server/database/apikeycnfig';
 import * as firebase from 'firebase';
+// import '@firebase/firestore';
 export default class App extends React.Component {
 	constructor(props) {
 		super(props);
-
-		firebase.initializeApp(apikeycnfig.FirebaseConfig);
 	}
 
 	render() {
