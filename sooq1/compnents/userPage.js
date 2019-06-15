@@ -1,36 +1,47 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, ScrollView, ImageBackground, Image } from 'react-native';
-// import Login from './compnents/login';
-// import Signup from './compnents/signup';
-// import Home from './compnents/homePage';
-// import SpacficCategory from './compnents/spacficCategoty';
 import { Actions } from 'react-native-router-flux';
 import Footer from './footer';
-// import { Router, Scene } from 'react-native-router-flux';
-
+// import console = require('console');
+import Header from './header';
+// import console = require('console');
 export default class UserPage extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			id: '1',
+			name: '',
+			img: '',
+			location: '',
+			Merc: []
+		};
+	}
+	componentWillMount() {
+		fetch(`http://192.168.0.14:3000/seeUserInfo?id=${this.state.id}`)
+			.then((data) => data.json())
+			.then((data) => this.setState(data)),
+			fetch(`http://192.168.0.14:3000/seeUserMerc?id=${this.state.id}`)
+				.then((data) => data.json())
+				.then((data) => {
+					this.setState({ Merc: data });
+				});
 	}
 	render() {
 		return (
 			<View style={{ flex: 1, justifyContent: 'space-around', flexDirection: 'column' }}>
-				<View style={{ backgroundColor: 'green', height: 23 }} />
-
+				<Header />
 				<ScrollView>
-					<View style={{ backgroundColor: 'black', width: 360, height: 70 }} />
 					<View style={{ height: 200 }}>
 						<ImageBackground
 							source={{
 								uri:
-									'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxkGrpFSI8Qea8heiy5ouyzNyZWbTVXG1Xkjk4_ArpAtvaWKQpog'
+									'https://firebasestorage.googleapis.com/v0/b/mobishop-ffcff.appspot.com/o/items%2Fsun.jpeg?alt=media&token=39e0ac27-55a3-48ea-8fd3-e70390a0c2de'
 							}}
 							style={{ width: '100%', height: '100%', justifyContent: 'flex-end' }}
 						>
 							<Image
 								source={{
-									uri:
-										'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxkGrpFSI8Qea8heiy5ouyzNyZWbTVXG1Xkjk4_ArpAtvaWKQpog'
+									uri: this.state.img
 								}}
 								style={{ width: 150, height: 150, borderRadius: 100 }}
 								// blurRadius={100}
@@ -57,13 +68,53 @@ export default class UserPage extends Component {
 							<Text>location:</Text>
 						</View>
 						<View>
-							<Text>Yazan aliwah</Text>
+							<Text>{this.state.name}</Text>
 							<Text>26/6/1996</Text>
-							<Text>amman</Text>
+							<Text>{this.state.location}</Text>
 						</View>
-						<View>
-							<Text>dsfaf</Text>
-						</View>
+						<View />
+					</View>
+					<View
+						style={{
+							flex: 1,
+							flexDirection: 'column',
+							alignItems: 'center',
+							justifyContent: 'space-between'
+						}}
+					>
+						<Text>You'r Merc</Text>
+
+						<ScrollView>
+							<View>
+								{this.state.Merc.map((item) => {
+									return (
+										<View
+											key={item.id}
+											style={{
+												flexDirection: 'row',
+												justifyContent: 'space-between'
+											}}
+										>
+											<Image
+												source={{ uri: item.img }}
+												style={{ width: 100, height: 100, alignItems: 'flex-end' }}
+											/>
+											<View>
+												<Text style={{ color: 'red' }}>Title:</Text>
+												<Text style={{ color: 'red' }}>Descrbtion:</Text>
+												<Text style={{ color: 'red' }}>Cost:</Text>
+											</View>
+											<View>
+												<Text>{item.title}</Text>
+												<Text>{item.descrbtion}</Text>
+
+												<Text>{item.cost}</Text>
+											</View>
+										</View>
+									);
+								})}
+							</View>
+						</ScrollView>
 					</View>
 					<View />
 				</ScrollView>

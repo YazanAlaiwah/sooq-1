@@ -5,6 +5,7 @@ import { Actions } from 'react-native-router-flux';
 import Header from './header';
 import { ImagePicker } from 'expo';
 import { dbh } from '../server/database/apikeycnfig';
+import Footer from './footer';
 // import console = require('console');
 
 export default class AddItem extends Component {
@@ -13,19 +14,21 @@ export default class AddItem extends Component {
 		this.state = {
 			userId: '1',
 			img:
-				'https://firebasestorage.googleapis.com/v0/b/mobishop-ffcff.appspot.com/o/items%2Fimages.jpeg?alt=media&token=f407c561-e00d-41e5-acac-de0c0ef59fe2',
+				'https://firebasestorage.googleapis.com/v0/b/mobishop-ffcff.appspot.com/o/items%2Fqury.png?alt=media&token=a30d14fe-888b-4158-b0d0-473a6f9f7f73',
 			type: 'others',
 			specficArr: [],
 			specfic: '',
 			checked: false,
 			descrbtion: '',
 			title: '',
-			cost: ''
+			cost: '',
+			showSpecfic: false
 		};
 	}
 	select(itemValue) {
 		this.setState({
-			type: itemValue
+			type: itemValue,
+			showSpecfic: !this.state.showSpecfic
 		});
 		// console.warn(itemValue);
 		fetch(`http://192.168.0.14:3000/seeSpicfic?type=${itemValue}`).then((data) => data.json()).then((data) => {
@@ -33,7 +36,7 @@ export default class AddItem extends Component {
 			for (let i = 0; i < data.length; i++) {
 				arr.push({ label: data[i].specfic, value: data[i].specfic });
 			}
-
+			// console.warn(data);
 			// console.warn(this.state.specfic);
 			this.setState({
 				specficArr: arr
@@ -43,25 +46,13 @@ export default class AddItem extends Component {
 	onChooseImageUploud = async () => {
 		let result = await ImagePicker.launchCameraAsync();
 		if (!result.cancelled) {
-			this.uploudImage(result.uri, 'test-image')
-				.then(() => {
-					Alert.alert('good');
-				})
-				.catch((err) => {
-					Alert.alert(err);
-				});
+			this.uploudImage(result.uri, 'test-image');
 		}
 	};
 	onChooseImageUploud2 = async () => {
 		let result = await ImagePicker.launchImageLibraryAsync();
 		if (!result.cancelled) {
-			this.uploudImage(result.uri, 'test-image')
-				.then(() => {
-					Alert.alert('good');
-				})
-				.catch((err) => {
-					Alert.alert(err);
-				});
+			this.uploudImage(result.uri, 'test-image');
 		}
 	};
 
@@ -109,24 +100,46 @@ export default class AddItem extends Component {
 	}
 	render() {
 		return (
-			<View>
+			<View style={{ flex: 1, justifyContent: 'space-around', flexDirection: 'column' }}>
 				<ScrollView>
 					<Header />
 					<View>
-						<View style={{ flex: 1, flexDirection: 'column' }}>
+						<View style={{ flex: 1, flexDirection: 'column', alignItems: 'center' }}>
+							<Image source={{ uri: this.state.img }} style={{ width: '100%', height: 300 }} />
 							<View style={{ flex: 1, flexDirection: 'row' }}>
-								<View style={{ fex: 1, flexDirection: 'column' }}>
-									<View style={{ paddingBottom: 10 }}>
+								<View style={{ fex: 1, flexDirection: 'row' }}>
+									<View
+										style={{
+											width: '50%',
+											height: 20,
+											borderRadius: 10,
+											borderWidth: 1,
+											borderColor: '#fff'
+										}}
+									>
 										<Button title="take image.." onPress={this.onChooseImageUploud} color="black" />
 									</View>
-									<Button title="chosee image.." onPress={this.onChooseImageUploud2} />
+									<View
+										style={{
+											width: '50%',
+											height: 20,
+											borderRadius: 90,
+											borderWidth: 1,
+											borderColor: '#fff'
+										}}
+									>
+										<Button
+											title="chosee image.."
+											onPress={this.onChooseImageUploud2}
+											color="black"
+										/>
+									</View>
 								</View>
-								<Image source={{ uri: this.state.img }} style={{ width: 250, height: 200 }} />
 							</View>
 							<View>
 								<Picker
 									selectedValue={this.state.type}
-									style={{ height: 50, width: 200 }}
+									style={{ height: 70, width: 300 }}
 									onValueChange={(itemValue, itemIndex) => this.select(itemValue)}
 									enabled={true}
 								>
@@ -136,7 +149,9 @@ export default class AddItem extends Component {
 									<Picker.Item label="games" value="games" />
 									<Picker.Item label="others" value="others" />
 								</Picker>
-								<View style={{ height: 150 }}>
+							</View>
+							{this.state.showSpecfic && (
+								<View style={{ flex: 1 }}>
 									<ScrollView>
 										<RadioForm
 											labelColor={'#50C900'}
@@ -144,32 +159,67 @@ export default class AddItem extends Component {
 											initial={-1}
 											buttonColor={'#50C900'}
 											onPress={(value) => {
-												this.setState({ specfic: value });
+												this.setState({ specfic: value, showSpecfic: !this.state.showSpecfic });
 											}}
 										/>
 									</ScrollView>
 								</View>
+							)}
+							<View
+								style={{
+									width: 300,
+									flex: 1
+								}}
+							>
 								<TextInput
-									placeholder="discrbtion"
+									placeholder="      discrbtion"
 									onChangeText={(text) => this.setState({ discrbtion: text })}
-									style={{ height: 40, borderColor: 'gray', borderWidth: 1, width: 100 }}
+									style={{
+										borderRadius: 20,
+										borderColor: 'gray',
+										borderWidth: 1,
+										height: 30,
+										marginBottom: 10
+									}}
 								/>
+
 								<TextInput
-									placeholder="title"
+									placeholder="     title"
 									onChangeText={(text) => this.setState({ title: text })}
-									style={{ height: 40, borderColor: 'gray', borderWidth: 1, width: 100 }}
+									style={{
+										marginBottom: 10,
+										borderColor: 'gray',
+										borderWidth: 1,
+										borderRadius: 20,
+										height: 30
+									}}
 								/>
 								<TextInput
 									name="cost"
-									placeholder="cost"
+									placeholder="      cost"
 									onChangeText={(text) => this.setState({ cost: text })}
-									style={{ height: 40, borderColor: 'gray', borderWidth: 1, width: 100 }}
+									style={{
+										marginBottom: 10,
+										borderColor: 'gray',
+										borderRadius: 20,
+										borderWidth: 1,
+										height: 30
+									}}
 								/>
 							</View>
 						</View>
-						<Button title="done" onPress={this.done.bind(this)} />
+
+						<Button
+							title="done"
+							onPress={this.done.bind(this)}
+							style={{
+								margin: 5,
+								borderRadius: 100
+							}}
+						/>
 					</View>
 				</ScrollView>
+				<Footer />
 			</View>
 		);
 	}

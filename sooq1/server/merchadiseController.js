@@ -49,6 +49,7 @@ exports.seeSpaceficCategory = (req, res) => {
 	});
 };
 exports.seeSpicfic = (req, res) => {
+	console.log(req.query);
 	Category.findAll({
 		attributes: [ 'specfic' ],
 		where: {
@@ -63,6 +64,25 @@ exports.seeListMerchandise = (req, res) => {
 	Item.findAll({
 		where: {
 			categoryId: req.query.id
+		}
+	}).then((data) => {
+		res.send(data);
+	});
+};
+exports.seeUserInfo = (req, res) => {
+	User.findOne({
+		attributes: [ 'name', 'img', 'location' ],
+		where: {
+			id: req.query.id
+		}
+	}).then((data) => {
+		res.send(data);
+	});
+};
+exports.seeUserMerc = (req, res) => {
+	Item.findAll({
+		where: {
+			userId: req.query.id
 		}
 	}).then((data) => {
 		res.send(data);

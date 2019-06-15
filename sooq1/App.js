@@ -23,8 +23,8 @@ export default class App extends React.Component {
 					<Scene key="listofitems" component={ListOfItems} hideNavBar={true} />
 					<Scene key="spacficCategory" component={SpacficCategory} hideNavBar={true} />
 					<Scene key="login" component={Login} hideNavBar={true} />
-					<Scene key="userpage" component={UserPage} hideNavBar={true} />
-					<Scene key="home" component={Home} initial hideNavBar={true} />
+					<Scene key="userpage" component={UserPage} initial hideNavBar={true} />
+					<Scene key="home" component={Home} hideNavBar={true} />
 					<Scene key="additem" component={AddItem} hideNavBar={true} />
 				</Scene>
 			</Router>

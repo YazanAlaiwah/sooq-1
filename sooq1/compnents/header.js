@@ -43,12 +43,16 @@ export default function Header() {
 							button={<Icon name="md-person" color="#FEFEFE" size={50} onPress={this.showMenu} />}
 						>
 							<MenuItem onPress={this.hideMenu}>you'r profile</MenuItem>
-							<MenuItem onPress={this.hideMenu}>setting</MenuItem>
+							<MenuItem onPress={this.hideMenu} disabled>
+								setting
+							</MenuItem>
 							<MenuItem onPress={this.hideMenu} disabled>
 								addItem
 							</MenuItem>
 							<MenuDivider />
-							<MenuItem onPress={this.hideMenu}>logout</MenuItem>
+							<MenuItem onPress={this.hideMenu} disabled>
+								logout
+							</MenuItem>
 						</Menu>
 					</View>
 				</View>

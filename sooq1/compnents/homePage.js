@@ -29,7 +29,7 @@ export default class Home extends Component {
 	cato(e) {
 		// console.warn(e);
 		fetch(`http://192.168.0.14:3000/spaceficCategory?type=${e}`).then((data) => data.json()).then((data) => {
-			console.warn(data);
+			// console.warn(data);
 			Actions.spacficCategory({ text: data });
 		});
 	}

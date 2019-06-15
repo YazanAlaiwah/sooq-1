@@ -8,5 +8,7 @@ sooqRouter.route('/rmMerc').delete(Merchandise.removeMerchandise);
 sooqRouter.route('/spaceficCategory').get(Merchandise.seeSpaceficCategory);
 sooqRouter.route('/seeSpicfic').get(Merchandise.seeSpicfic);
 sooqRouter.route('/seeListMerchandise').get(Merchandise.seeListMerchandise);
+sooqRouter.route('/seeUserInfo').get(Merchandise.seeUserInfo);
+sooqRouter.route('/seeUserMerc').get(Merchandise.seeUserMerc);
 
 module.exports = sooqRouter;
