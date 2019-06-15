@@ -1,6 +1,7 @@
 const { User, Item, Category } = require('./database/module');
 
 exports.addMerchandise = (req, res) => {
+	// console.log(req.body);
 	const { img, descrbtion, title, cost, userId } = req.body;
 	console.log(req.body);
 	Category.findOne({
@@ -10,7 +11,7 @@ exports.addMerchandise = (req, res) => {
 		},
 		attributes: [ 'id' ]
 	}).then((idcc) => {
-		console.log(idcc.dataValues.id);
+		console.log(idcc.dataValues);
 		Item.create({
 			img: img,
 			descrbtion: descrbtion,
@@ -36,14 +37,34 @@ exports.removeMerchandise = (req, res) => {
 	});
 };
 exports.seeSpaceficCategory = (req, res) => {
-	console.log(req.query);
+	// console.log(req.query);
 	Category.findAll({
-		attributes: [ 'id', 'specfic' ],
+		attributes: [ 'id', 'specfic', 'img' ],
 		where: {
 			type: req.query.type
 		}
 	}).then((data) => {
-		console.log(data);
+		// console.log(data);
+		res.send(data);
+	});
+};
+exports.seeSpicfic = (req, res) => {
+	Category.findAll({
+		attributes: [ 'specfic' ],
+		where: {
+			type: req.query.type
+		}
+	}).then((data) => {
+		res.send(data);
+	});
+};
+exports.seeListMerchandise = (req, res) => {
+	// console.log(req.query);
+	Item.findAll({
+		where: {
+			categoryId: req.query.id
+		}
+	}).then((data) => {
 		res.send(data);
 	});
 };

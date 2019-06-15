@@ -29,6 +29,7 @@ export default class Home extends Component {
 	cato(e) {
 		// console.warn(e);
 		fetch(`http://192.168.0.14:3000/spaceficCategory?type=${e}`).then((data) => data.json()).then((data) => {
+			console.warn(data);
 			Actions.spacficCategory({ text: data });
 		});
 	}
@@ -48,7 +49,14 @@ export default class Home extends Component {
 										style={styles.container1}
 										key={item.section}
 									>
-										<View style={styles.container1}>
+										<View
+											style={{
+												flexDirection: 'row',
+												flex: 1,
+												borderRadius: 20,
+												backgroundColor: '#FEFBF1'
+											}}
+										>
 											<Image
 												source={{
 													uri: item.uri
@@ -91,18 +99,19 @@ const styles = StyleSheet.create({
 		marginTop: 100,
 		flex: 1,
 		flexDirection: 'row',
-		padding: 10,
+
 		marginLeft: 16,
 		marginRight: 16,
 		marginTop: 8,
 		marginBottom: 8,
-		borderRadius: 5,
+		borderRadius: 20,
 		backgroundColor: '#FFF',
 		elevation: 2
 	},
 	title: {
-		fontSize: 30,
-		color: '#000'
+		fontSize: 35,
+		color: '#000',
+		fontFamily: 'Roboto'
 	},
 	container_text: {
 		flex: 1,
@@ -115,7 +124,7 @@ const styles = StyleSheet.create({
 		fontStyle: 'italic'
 	},
 	photo: {
-		height: 130,
-		width: 130
+		height: 150,
+		width: 150
 	}
 });

@@ -5,11 +5,13 @@ import { StyleSheet, Text, View } from 'react-native';
 import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Actions } from 'react-native-router-flux';
+// import console = require('console');
 
 export default function Header() {
 	_menu = null;
 
 	setMenuRef = (ref) => {
+		console.log(ref);
 		this._menu = ref;
 	};
 

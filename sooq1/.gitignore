@@ -33,3 +33,28 @@ web-report/
 
 # var ref = dbh.ref().child('items/' + imageName);
 # 			return ref.put(blob);
+
+
+
+	# // const imageFile = RNFetchBlob.wrap('mainFolder/subfolder/myImage');
+	# 	// const ref = firebase.storage().ref('path/to/image');
+	# 	// var uploadBlob = null;
+
+	# 	// Blob.build(imageFile, { type: 'image/jpg;' })
+	# 	// 	.then((imageBlob) => {
+	# 	// 		uploadBlob = imageBlob;
+	# 	// 		return ref.put(imageBlob, { contentType: 'image/jpg' });
+	# 	// 	})
+	# 	// 	.then(() => {
+	# 	// 		uploadBlob.close();
+	# 	// 		return ref.getDownloadURL();
+	# 	// 	})
+	# 	// 	.then((url) => {
+	# 	// 		console.log(url);
+	# 	// 	})
+	# 	// 	.catch(() => {
+	# 	// 		dispatch({
+	# 	// 			type: UPDATE_PROFILE_INFO_FAIL,
+	# 	// 			payload: 'Unable to upload profile picture, please try again'
+	# 	// 		});
+	# 	});
