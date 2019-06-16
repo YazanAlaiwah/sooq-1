@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ScrollView, ImageBackground, Image } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, ImageBackground, Image, Alert } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Footer from './footer';
 // import console = require('console');
 import Header from './header';
+import Icon from 'react-native-vector-icons/Ionicons';
+import { Ionicons, AntDesign } from '@expo/vector-icons';
+// import console = require('console');
 // import console = require('console');
 export default class UserPage extends Component {
 	constructor(props) {
@@ -85,35 +88,51 @@ export default class UserPage extends Component {
 						<Text>You'r Merc</Text>
 
 						<ScrollView>
-							<View>
-								{this.state.Merc.map((item) => {
-									return (
-										<View
-											key={item.id}
-											style={{
-												flexDirection: 'row',
-												justifyContent: 'space-between'
-											}}
-										>
-											<Image
-												source={{ uri: item.img }}
-												style={{ width: 100, height: 100, alignItems: 'flex-end' }}
-											/>
-											<View>
-												<Text style={{ color: 'red' }}>Title:</Text>
-												<Text style={{ color: 'red' }}>Descrbtion:</Text>
-												<Text style={{ color: 'red' }}>Cost:</Text>
-											</View>
-											<View>
-												<Text>{item.title}</Text>
-												<Text>{item.descrbtion}</Text>
-
-												<Text>{item.cost}</Text>
-											</View>
+							{this.state.Merc.map((item) => {
+								return (
+									<View
+										key={item.id}
+										style={{
+											flexDirection: 'row'
+										}}
+									>
+										<Image source={{ uri: item.img }} style={{ width: 100, height: 100 }} />
+										<View>
+											<Text style={{ color: 'red' }}>Title:</Text>
+											<Text style={{ color: 'red' }}>Descrbtion:</Text>
+											<Text style={{ color: 'red' }}>Cost:</Text>
 										</View>
-									);
-								})}
-							</View>
+										<View>
+											<Text>{item.title}</Text>
+											<Text>{item.descrbtion}</Text>
+
+											<Text>{item.cost}</Text>
+										</View>
+										<AntDesign
+											onPress={() =>
+												Alert.alert(
+													'Warning',
+													'are you shure you want to delete this item',
+													[
+														{
+															text: 'Cancel',
+															onPress: () => console.warn('Cancel Pressed'),
+															style: 'cancel'
+														},
+														{
+															text: 'Delete',
+															onPress: () => console.warn('OK Pressed')
+														}
+													],
+													{ cancelable: false }
+												)}
+											name="delete"
+											size={32}
+											color="green"
+										/>
+									</View>
+								);
+							})}
 						</ScrollView>
 					</View>
 					<View />

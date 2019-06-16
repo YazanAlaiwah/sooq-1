@@ -1,0 +1,108 @@
+import React from 'react';
+import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { Actions } from 'react-native-router-flux';
+
+export default class Items extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+
+	render() {
+		return (
+			<ScrollView>
+				<View style={{ flexDirection: 'row' }}>
+					<View style={{ flex: 1, flexDirection: 'column' }}>
+						{this.props.data.map((item, index) => {
+							if (index % 2 === 0) {
+								return (
+									<View key={item.id}>
+										<TouchableOpacity>
+											<Image
+												source={{ uri: item.img }}
+												style={{ width: 175, height: 160, borderRadius: 25 }}
+											/>
+											<View
+												style={{
+													flexDirection: 'row',
+													justifyContent: 'center',
+													alignItems: 'center'
+												}}
+											>
+												<View style={{ flex: 1, flexDirection: 'column' }}>
+													<View
+														style={{
+															borderRadius: 4,
+															borderWidth: 0.5,
+															borderColor: '#d6d7da'
+														}}
+													>
+														<View style={{ flex: 1, flexDirection: 'column' }}>
+															<Text style={{ color: 'green', fontSize: 15 }}>Type:</Text>
+															<Text>{item.title}</Text>
+
+															<Text style={{ color: 'red', fontSize: 15 }}>
+																Descrbtion:
+															</Text>
+															<Text>{item.descrbtion}</Text>
+
+															<Text style={{ color: 'red', fontSize: 15 }}>Cost:</Text>
+															<Text>{item.cost}</Text>
+														</View>
+													</View>
+												</View>
+											</View>
+										</TouchableOpacity>
+									</View>
+								);
+							}
+						})}
+					</View>
+
+					<View style={{ flex: 1, flexDirection: 'column' }}>
+						{this.props.data.map((item, index) => {
+							if (index % 2 !== 0) {
+								return (
+									<View key={item.id}>
+										<TouchableOpacity>
+											<Image
+												source={{ uri: item.img }}
+												style={{ width: 175, height: 160, borderRadius: 25 }}
+											/>
+											<View
+												style={{
+													flexDirection: 'row',
+													justifyContent: 'center',
+													alignItems: 'center'
+												}}
+											>
+												<View style={{ flex: 1, flexDirection: 'column' }}>
+													<View
+														style={{
+															borderRadius: 4,
+															borderWidth: 0.5,
+															borderColor: '#d6d7da'
+														}}
+													>
+														<Text style={{ color: 'red', fontSize: 15 }}>Type:</Text>
+														<Text>{item.title}</Text>
+
+														<Text style={{ color: 'red', fontSize: 15 }}>Descrbtion:</Text>
+														<Text>{item.descrbtion}</Text>
+
+														<Text style={{ color: 'red', fontSize: 15 }}>Cost:</Text>
+														<Text>{item.cost}</Text>
+													</View>
+												</View>
+											</View>
+										</TouchableOpacity>
+									</View>
+								);
+							}
+						})}
+						<View style={{ height: 100 }} />
+					</View>
+				</View>
+			</ScrollView>
+		);
+	}
+}

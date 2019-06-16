@@ -105,10 +105,8 @@ export default class AddItem extends Component {
 					<Header />
 					<View>
 						<View style={{ flex: 1, flexDirection: 'column', alignItems: 'center' }}>
-							{/* <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center' }}> */}
-							<View style={{ height: 300 }}>
-								<Image source={{ uri: this.state.img }} style={{ width: '100%', height: 300 }} />
-							</View>
+							{/* <View>
+							<Image source={{ uri: this.state.img }} style={{ width: '100%', height: 300 }} />
 							<View style={{ flex: 1, flexDirection: 'row' }}>
 								<View style={{ fex: 1, flexDirection: 'row' }}>
 									<View
@@ -139,7 +137,7 @@ export default class AddItem extends Component {
 									</View>
 								</View>
 							</View>
-							{/* </View> */}
+							</View> */}
 							<View>
 								<Picker
 									selectedValue={this.state.type}
