@@ -1,14 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import Login from './compnents/login';
 import Signup from './compnents/signup';
-// import Home from './compnents/homePage';
 import MainPage from './compnents/mainPage/mainPage';
 import SpacficCategory from './compnents/spacficCategoty';
-import UserPage from './compnents/userPage';
 import { Router, Scene } from 'react-native-router-flux';
 import AddItem from './compnents/additem';
 import apikeycnfig from './server/database/apikeycnfig';
+import UserPage from './compnents/userPage/userPage';
 import * as firebase from 'firebase';
 import ListOfItems from './compnents/listOfItems/listOfItems';
 export default class App extends React.Component {
