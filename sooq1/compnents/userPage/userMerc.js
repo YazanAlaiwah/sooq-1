@@ -10,6 +10,16 @@ export default class UserMerc extends Component {
 		};
 	}
 
+	delete(id) {
+		fetch(`http://192.168.0.14:3000/rmMerc`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ id: id })
+		}).then((data) => console.warn(data.status));
+	}
+
 	render() {
 		return (
 			<View
@@ -57,7 +67,7 @@ export default class UserMerc extends Component {
 												},
 												{
 													text: 'Delete',
-													onPress: () => console.warn(item.id)
+													onPress: () => this.delete(item.id)
 												}
 											],
 											{ cancelable: false }

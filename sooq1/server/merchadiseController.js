@@ -27,6 +27,7 @@ exports.addMerchandise = (req, res) => {
 };
 
 exports.removeMerchandise = (req, res) => {
+	console.log(req.body);
 	Item.destroy({
 		where: {
 			id: req.body.id

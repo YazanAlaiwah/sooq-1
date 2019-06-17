@@ -11,13 +11,14 @@ export default function Header() {
 	_menu = null;
 
 	setMenuRef = (ref) => {
-		console.log(ref);
+		// console.warn(ref);
 		this._menu = ref;
 	};
 
 	hideMenu = () => {
 		// console.warn(arr);
 		this._menu.hide();
+		this._menu = ref;
 		Actions.userpage();
 	};
 
