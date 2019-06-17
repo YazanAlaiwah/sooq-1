@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import RadioForm from 'react-native-simple-radio-button';
 import { StyleSheet, View, ScrollView } from 'react-native';
+// import console = require('console');
 
-export default class AddItem extends Component {
+export default class SubCategory extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -10,6 +11,13 @@ export default class AddItem extends Component {
 			specfic: '',
 			showSpecfic: false
 		};
+	}
+	componentWillReceiveProps() {
+		// console.warn(this.props.data);
+		this.setState({
+			showSpecfic: this.props.data.showSpecfic,
+			specficArr: this.props.data.specficArr
+		});
 	}
 
 	render() {
@@ -24,9 +32,10 @@ export default class AddItem extends Component {
 								initial={-1}
 								buttonColor={'#50C900'}
 								onPress={(value) => {
+									this.props.supCategory(value);
 									this.setState({
 										specfic: value,
-										showSpecfic: !this.state.showSpecfic
+										showSpecfic: false
 									});
 								}}
 							/>

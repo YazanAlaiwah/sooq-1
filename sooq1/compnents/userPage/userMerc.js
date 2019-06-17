@@ -57,7 +57,7 @@ export default class UserMerc extends Component {
 												},
 												{
 													text: 'Delete',
-													onPress: () => console.warn('OK Pressed')
+													onPress: () => console.warn(item.id)
 												}
 											],
 											{ cancelable: false }

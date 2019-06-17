@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TextInput } from 'react-native';
 
-export default class AddItem extends Component {
+export default class InputFiled extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			descrbtion: '',
-			title: '',
-			cost: ''
-		};
 	}
 
 	render() {
@@ -16,19 +11,19 @@ export default class AddItem extends Component {
 			<View style={styles.continer_input}>
 				<TextInput
 					placeholder="      discrbtion"
-					onChangeText={(text) => this.setState({ discrbtion: text })}
+					onChangeText={(text) => this.props.onChange1(text)}
 					style={styles.input}
 				/>
 
 				<TextInput
 					placeholder="     title"
-					onChangeText={(text) => this.setState({ title: text })}
+					onChangeText={(text) => this.props.onChange2(text)}
 					style={styles.input}
 				/>
 				<TextInput
 					name="cost"
 					placeholder="      cost"
-					onChangeText={(text) => this.setState({ cost: text })}
+					onChangeText={(text) => this.props.onChange3(text)}
 					style={styles.input}
 				/>
 			</View>

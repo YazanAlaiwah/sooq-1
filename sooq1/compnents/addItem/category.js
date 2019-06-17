@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Picker } from 'react-native';
+import SubCategory from './subCategory';
+// import console = require('console');
 
 export default class Category extends Component {
 	constructor(props) {
@@ -10,7 +12,7 @@ export default class Category extends Component {
 			specficArr: [],
 			specfic: '',
 			checked: false,
-			showSpecfic: false
+			showSpecfic: true
 		};
 	}
 	select(itemValue) {
@@ -26,12 +28,19 @@ export default class Category extends Component {
 			this.setState({
 				specficArr: arr
 			});
+			this.props.specficArr(arr);
+			this.props.type(itemValue);
+		});
+	}
+	res(res) {
+		this.setState({
+			specfic: res
 		});
 	}
 
 	render() {
 		return (
-			<View>
+			<View style={{ flex: 1, flexDirection: 'column', alignItems: 'center' }}>
 				<Picker
 					selectedValue={this.state.type}
 					style={styles.picker_style}
@@ -44,6 +53,11 @@ export default class Category extends Component {
 					<Picker.Item label="games" value="games" />
 					<Picker.Item label="others" value="others" />
 				</Picker>
+				<SubCategory
+					data={{ showSpecfic: this.state.showSpecfic, specficArr: this.state.specficArr }}
+					res={this.res.bind(this)}
+					supCategory={this.props.supCategory}
+				/>
 			</View>
 		);
 	}
