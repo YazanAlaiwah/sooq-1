@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/Cellar/yarn/1.17.0/libexec/bin/yarn.js
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.17.0/libexec/bin/yarn.js add semver
 
 PATH: 
   /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/opt/mysql@5.7/bin:/Users/rbk-3/Library/Android/sdk/emulator:/Users/rbk-3/Library/Android/sdk/tools:/Users/rbk-3/Library/Android/sdk/tools/bin:/Users/rbk-3/Library/Android/sdk/platform-tools:/usr/local/opt/mysql@5.7/bin:/Users/rbk-3/Library/Android/sdk/emulator:/Users/rbk-3/Library/Android/sdk/tools:/Users/rbk-3/Library/Android/sdk/tools/bin:/Users/rbk-3/Library/Android/sdk/platform-tools
@@ -14,8 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.24.2.tgz: unexpected end of file
-      at Zlib.zlibOnError [as onerror] (zlib.js:154:17)
+  Error: EACCES: permission denied, mkdir '/Users/rbk-3/Desktop/sooq-1/sooq1/node_modules/@babel/core/node_modules'
 
 npm manifest: 
   {
