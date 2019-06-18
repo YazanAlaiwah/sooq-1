@@ -4,7 +4,7 @@ const sequelize = new Sequelize('sooq2', 'root', '', {
 	host: 'localhost',
 	dialect: 'mysql'
 });
-sequelize.sync({ force: true, logging: false }).then(() => {
+sequelize.sync({ force: false, logging: false }).then(() => {
 	console.log(`Database & tables created!`);
 });
 

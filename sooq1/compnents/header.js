@@ -18,7 +18,7 @@ export default function Header() {
 	hideMenu = () => {
 		// console.warn(arr);
 		this._menu.hide();
-		this._menu = ref;
+		// this._menu = ref;
 		Actions.userpage();
 	};
 

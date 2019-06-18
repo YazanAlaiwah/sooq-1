@@ -1,4 +1,15 @@
-const { User, Item, Category } = require('./database/module');
+const {
+	User,
+	Item,
+	Category,
+	Frinde,
+	Chat,
+	Image,
+	Item_Watched,
+	Commint,
+	Shop,
+	Watched
+} = require('./database/module');
 
 exports.addMerchandise = (req, res) => {
 	// console.log(req.body);
@@ -62,10 +73,17 @@ exports.seeSpicfic = (req, res) => {
 };
 exports.seeListMerchandise = (req, res) => {
 	// console.log(req.query);
-	Item.findAll({
-		where: {
-			categoryId: req.query.id
-		}
+	Image.findAll({
+		attributes: [ 'img' ],
+		include: [
+			{
+				model: Item,
+				where: {
+					categoryId: req.query.id
+				},
+				attributes: [ 'id', 'title', 'cost' ]
+			}
+		]
 	}).then((data) => {
 		res.send(data);
 	});
@@ -88,4 +106,12 @@ exports.seeUserMerc = (req, res) => {
 	}).then((data) => {
 		res.send(data);
 	});
+};
+exports.imageitem = (req, res) => {
+	Image.findAll({
+		attributes: [ 'img' ],
+		where: {
+			itemId: req.query.id
+		}
+	}).then((images) => res.send(images));
 };

@@ -10,7 +10,7 @@ const User = sequelize.define('user', {
 	phonenumber: { type: Sequelize.INTEGER },
 	backgroundImg: { type: Sequelize.STRING },
 	createdAt: {
-		// field: 'created_at',
+		allowNull: true,
 		type: Sequelize.DATE,
 		defaultValue: Sequelize.NOW
 	},
@@ -28,7 +28,7 @@ const Item = sequelize.define('item', {
 	cost: { type: Sequelize.STRING },
 	clicked: { type: Sequelize.INTEGER },
 	createdAt: {
-		// field: 'created_at',
+		allowNull: true,
 		type: Sequelize.DATE,
 		defaultValue: Sequelize.NOW
 	},
@@ -44,7 +44,7 @@ const Category = sequelize.define('category', {
 	specfic: { type: Sequelize.STRING },
 	img: { type: Sequelize.STRING },
 	createdAt: {
-		allowNull: false,
+		allowNull: true,
 		type: Sequelize.DATE,
 		defaultValue: Sequelize.NOW
 	},
@@ -58,7 +58,7 @@ const Comment = sequelize.define('comment', {
 	id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
 	comment: { type: Sequelize.STRING },
 	createdAt: {
-		allowNull: false,
+		allowNull: true,
 		type: Sequelize.DATE,
 		defaultValue: Sequelize.NOW
 	},
@@ -84,7 +84,7 @@ const Shop = sequelize.define('shop', {
 	type: { type: Sequelize.STRING },
 	img: { type: Sequelize.STRING },
 	createdAt: {
-		// field: 'created_at',
+		allowNull: true,
 		type: Sequelize.DATE,
 		defaultValue: Sequelize.NOW
 	},
@@ -97,7 +97,7 @@ const Shop = sequelize.define('shop', {
 const Watched = sequelize.define('watched', {
 	id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
 	createdAt: {
-		// field: 'created_at',
+		allowNull: true,
 		type: Sequelize.DATE,
 		defaultValue: Sequelize.NOW
 	},
@@ -111,7 +111,7 @@ const Image = sequelize.define('images', {
 	id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
 	img: { type: Sequelize.STRING },
 	createdAt: {
-		// field: 'created_at',
+		allowNull: true,
 		type: Sequelize.DATE,
 		defaultValue: Sequelize.NOW
 	},
@@ -125,7 +125,7 @@ const Chat = sequelize.define('chat', {
 	id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
 	messeges: { type: Sequelize.TEXT },
 	createdAt: {
-		// field: 'created_at',
+		allowNull: true,
 		type: Sequelize.DATE,
 		defaultValue: Sequelize.NOW
 	},
@@ -138,7 +138,7 @@ const Chat = sequelize.define('chat', {
 const Frinde = sequelize.define('frinds', {
 	id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
 	createdAt: {
-		// field: 'created_at',
+		allowNull: true,
 		type: Sequelize.DATE,
 		defaultValue: Sequelize.NOW
 	},
@@ -149,35 +149,47 @@ const Frinde = sequelize.define('frinds', {
 	}
 });
 const Item_Watched = sequelize.define('item_watched', {
-	id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true }
+	id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
+	createdAt: {
+		allowNull: true,
+		type: Sequelize.DATE,
+		defaultValue: Sequelize.NOW
+	}
 });
 
 User.hasMany(Frinde);
-Frinde.blongsTo(User, { as: 'user1' });
-Frinde.blongsTo(User, { as: 'user2' });
+Frinde.belongsTo(User, { as: 'user1' });
+Frinde.belongsTo(User, { as: 'user2' });
 User.hasMany(Chat);
-Chat.blongsTo(User, { as: 'user1' });
-Chat.blongsTo(User, { as: 'user2' });
+Chat.belongsTo(User, { as: 'user1' });
+Chat.belongsTo(User, { as: 'user2' });
 User.hasMany(Item);
-Item.blongsTo(User);
+Item.belongsTo(User);
 User.hasMany(Watched);
-Watched.blongsTo(User);
+Watched.belongsTo(User);
 User.hasMany(Shop);
-Shop.blongsTo(User);
-Item.blongsToMany(Watched, { through: Item_Watched });
-Watched.blongsToMany(User, { through: Item_Watched });
+Shop.belongsTo(User);
+Item.belongsToMany(Watched, { through: Item_Watched });
+Watched.belongsToMany(User, { through: Item_Watched });
 Item.hasMany(Image);
-Image.blongsTo(Item);
+Image.belongsTo(Item);
 Item.hasMany(Comment);
-Comment.blongsTo(Item);
+Comment.belongsTo(Item);
 Category.hasMany(Item);
-Item.blongsTo(Category);
+Item.belongsTo(Category);
 Category.hasMany(Shop);
-Shop.blongsTo(Category);
+Shop.belongsTo(Category);
 Shop.hasMany(Item);
-Item.blongsTo(Shop);
+Item.belongsTo(Shop);
 Shop.hasMany(Comment);
-Comment.blongsTo(Shop);
+Comment.belongsTo(Shop);
 module.exports.User = User;
 module.exports.Item = Item;
 module.exports.Category = Category;
+module.exports.Comment = Comment;
+module.exports.Shop = Shop;
+module.exports.Watched = Watched;
+module.exports.Image = Image;
+module.exports.Chat = Chat;
+module.exports.Frinde = Frinde;
+module.exports.Item_Watched = Item_Watched;
