@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, ScrollView, Button, Image, TextInput } from 're
 import Header from '../header';
 import Footer from '../footer';
 import { SliderBox } from 'react-native-image-slider-box';
+
 // import console = require('console');
 // import console = re/quire('console');
 // import console = require('console');

@@ -9,6 +9,7 @@
 		"server": "nodemon server/server.js"
 	},
 	"dependencies": {
+		"bcryptjs": "^2.4.3",
 		"body-parser": "^1.19.0",
 		"expo": "^33.0.0",
 		"express": "^4.17.1",
@@ -31,6 +32,7 @@
 		"rn-fetch-blob": "^0.10.15",
 		"sequelize": "^5.8.8",
 		"socket.io": "^2.2.0",
+		"tcomb-form-native": "^0.6.20",
 		"uuid": "^3.3.2"
 	},
 	"devDependencies": {

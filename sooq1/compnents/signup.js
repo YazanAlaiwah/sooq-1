@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, AsyncStorage } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+var t = require('tcomb-form-native');
 
 export default class Signup extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { email: '', password: '', phonenumber: '', location: '' };
+		this.state = { email: '', password: '', phonenumber: '', location: '', name: '' };
 	}
 
 	test() {
@@ -59,6 +60,12 @@ export default class Signup extends Component {
 					<TextInput
 						style={{ height: 40, width: 200, borderColor: 'gray', borderWidth: 1 }}
 						onChangeText={(location) => this.setState({ location })}
+						placeholder="amman"
+					/>
+					<Text>username</Text>
+					<TextInput
+						style={{ height: 40, width: 200, borderColor: 'gray', borderWidth: 1 }}
+						onChangeText={(name) => this.setState({ name })}
 						placeholder="amman"
 					/>
 					<Text style={{ color: 'blue' }} onPress={() => Actions.login()}>
