@@ -3,7 +3,7 @@ import { StyleSheet, View, ScrollView } from 'react-native';
 import Header from '../header';
 import Footer from '../footer';
 import Sections from './secctions';
-import { SliderBox } from 'react-native-image-slider-box';
+
 export default class MainPage extends Component {
 	constructor(props) {
 		super(props);

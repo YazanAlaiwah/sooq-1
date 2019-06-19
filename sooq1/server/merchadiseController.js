@@ -6,7 +6,7 @@ const {
 	Chat,
 	Image,
 	Item_Watched,
-	Commint,
+	Comment,
 	Shop,
 	Watched
 } = require('./database/module');
@@ -114,4 +114,27 @@ exports.imageitem = (req, res) => {
 			itemId: req.query.id
 		}
 	}).then((images) => res.send(images));
+};
+exports.itempage = (req, res) => {
+	console.log('hello');
+	Item.findOne({
+		attributes: [ 'title', 'descrbtion', 'cost' ],
+		where: {
+			id: req.query.id
+		},
+		include: [
+			{
+				model: User,
+				attributes: [ 'name', 'location', 'img' ]
+			}
+		]
+	}).then((data) => res.send(data));
+};
+exports.itemcommint = (req, res) => {
+	Comment.findAll({
+		attributes: [ 'comment' ],
+		where: {
+			itemId: req.query.id
+		}
+	}).then((commint) => res.send(commint));
 };

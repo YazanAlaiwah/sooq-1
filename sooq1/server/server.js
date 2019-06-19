@@ -5,6 +5,7 @@ const User = require('./database/module');
 const sooqRouter = require('./router');
 const jwt = require('jsonwebtoken');
 const app = express();
+var io = require('socket.io');
 const port = 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

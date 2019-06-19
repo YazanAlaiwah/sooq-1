@@ -11,5 +11,7 @@ sooqRouter.route('/seeListMerchandise').get(Merchandise.seeListMerchandise);
 sooqRouter.route('/seeUserInfo').get(Merchandise.seeUserInfo);
 sooqRouter.route('/seeUserMerc').get(Merchandise.seeUserMerc);
 sooqRouter.route('/imageitem').get(Merchandise.imageitem);
+sooqRouter.route('/itempage').get(Merchandise.itempage);
+sooqRouter.route('/itemcommint').get(Merchandise.itemcommint);
 
 module.exports = sooqRouter;
