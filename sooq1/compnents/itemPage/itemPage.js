@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, ScrollView, Button, Image, TextInput } from 're
 import Header from '../header';
 import Footer from '../footer';
 import { SliderBox } from 'react-native-image-slider-box';
+// import console = require('console');
 // import console = re/quire('console');
 // import console = require('console');
 // import console = require('console');
@@ -59,10 +60,21 @@ export default class ItemPage extends React.Component {
 			});
 	}
 	test() {
-		var x = [ ...this.state.commint ];
-		x = x.push(this.state.text);
+		fetch('http://192.168.0.14:3000/addcommint', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json'
+			},
+			body: JSON.stringify({
+				text: this.state.text,
+				id: this.props.id
+			})
+		});
+		// .then((res) => res.json())
+		// .then((res) => console.warn(res));
 		this.setState({
-			commint: x,
+			commint: [ ...this.state.commint, this.state.text ],
 			text: ''
 		});
 	}
@@ -87,7 +99,7 @@ export default class ItemPage extends React.Component {
 						);
 					})}
 					<TextInput value={this.state.text} onChangeText={(text) => this.setState({ text })} />
-					<Button title="sdfd" onPress={this.test} />
+					<Button title="sdfd" onPress={this.test.bind(this)} />
 				</ScrollView>
 				<Footer />
 			</View>

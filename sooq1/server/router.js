@@ -13,5 +13,6 @@ sooqRouter.route('/seeUserMerc').get(Merchandise.seeUserMerc);
 sooqRouter.route('/imageitem').get(Merchandise.imageitem);
 sooqRouter.route('/itempage').get(Merchandise.itempage);
 sooqRouter.route('/itemcommint').get(Merchandise.itemcommint);
+sooqRouter.route('/addcommint').post(Merchandise.addcommint);
 
 module.exports = sooqRouter;

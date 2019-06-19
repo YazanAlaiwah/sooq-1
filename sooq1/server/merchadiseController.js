@@ -138,3 +138,9 @@ exports.itemcommint = (req, res) => {
 		}
 	}).then((commint) => res.send(commint));
 };
+exports.addcommint = (req, res) => {
+	Comment.create({
+		comment: req.body.text,
+		itemId: req.body.id
+	});
+};
