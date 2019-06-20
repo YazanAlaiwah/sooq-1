@@ -3,7 +3,8 @@ import { StyleSheet, View, ScrollView } from 'react-native';
 import Header from '../header';
 import Footer from '../footer';
 import Sections from './secctions';
-
+// import console = require('console');
+// console.warn();
 export default class MainPage extends Component {
 	constructor(props) {
 		super(props);

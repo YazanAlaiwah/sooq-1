@@ -9,6 +9,7 @@ export default class Items extends React.Component {
 	}
 
 	ItemPage(id) {
+		fetch();
 		Actions.itempage({ id });
 	}
 

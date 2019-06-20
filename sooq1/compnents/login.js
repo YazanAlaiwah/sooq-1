@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, AsyncStorage } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-
 export default class Login extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { email: 'Ss', password: '123' };
+		this.state = { email: 'Ss', password: '123', token: '', id: '' };
 	}
 
 	test() {
@@ -21,7 +20,47 @@ export default class Login extends Component {
 		})
 			.then((data) => data.json())
 			.then((data) => {
-				console.warn(data);
+				// SecureStore.setItemAsync('Token', data.token);
+				// SecureStore.setItemAsync('ID', data.data.id);
+				// console.warn('done', data);
+				this.setState({
+					token: data.token,
+					id: data.data.id
+				});
+				console.warn(data.data.id);
+				var id = data.data.id;
+				// setTimeout(
+				// 	() => {
+				const saveUserId = async (userId) => {
+					try {
+						AsyncStorage.setItem('userId', this.state.id.toString());
+						AsyncStorage.setItem('token', this.state.token);
+					} catch (error) {
+						// Error retrieving data
+						console.log(error.message);
+					}
+					Actions.home();
+				};
+
+				saveUserId();
+				//AsyncStorage.setItem('token', data.token);
+				// 	},
+				// 	6000,
+				// 	'That was really slow!'
+				// );
+
+				// this._storeData.bind(this);
+			});
+	}
+
+	test1() {
+		AsyncStorage.getItem('token')
+			.then((value) => {
+				console.warn(value, 'This is Y');
+			})
+			.then()
+			.catch((error) => {
+				console.warn(error);
 			});
 	}
 
@@ -45,6 +84,7 @@ export default class Login extends Component {
 						signup
 					</Text>
 					<Button onPress={this.test.bind(this)} title="login" />
+					<Button onPress={this.test1.bind(this)} title="logindfsdsf" />
 				</View>
 			</View>
 		);
