@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, AsyncStorage } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 // import console = require('console');
 let id;
@@ -9,7 +9,21 @@ export default class Items extends React.Component {
 	}
 
 	ItemPage(id) {
-		fetch();
+		AsyncStorage.getItem('userId')
+			.then((value) => {
+				fetch('http://192.168.0.14:3000/itemClicked', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						Accept: 'application/json'
+					},
+					body: JSON.stringify({ itemId: id, userId: value })
+				});
+			})
+			.catch((error) => {
+				console.warn(error);
+			});
+
 		Actions.itempage({ id });
 	}
 

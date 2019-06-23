@@ -21,6 +21,24 @@ export default function Header() {
 		// this._menu = ref;
 		Actions.userpage();
 	};
+	hideMenu1 = () => {
+		// console.warn(arr);
+		this._menu.hide();
+		// this._menu = ref;
+		Actions.watched();
+	};
+	hideMenu2 = () => {
+		// console.warn(arr);
+		this._menu.hide();
+		// this._menu = ref;
+		Actions.additem();
+	};
+	hideMenu3 = () => {
+		// console.warn(arr);
+		this._menu.hide();
+		// this._menu = ref;
+		Actions.usershop();
+	};
 
 	showMenu = () => {
 		this._menu.show();
@@ -44,12 +62,9 @@ export default function Header() {
 							button={<Icon name="md-person" color="#FEFEFE" size={50} onPress={this.showMenu} />}
 						>
 							<MenuItem onPress={this.hideMenu}>you'r profile</MenuItem>
-							<MenuItem onPress={this.hideMenu} disabled>
-								setting
-							</MenuItem>
-							<MenuItem onPress={this.hideMenu} disabled>
-								addItem
-							</MenuItem>
+							<MenuItem onPress={this.hideMenu1}>watched</MenuItem>
+							<MenuItem onPress={this.hideMenu2}>addItem</MenuItem>
+							<MenuItem onPress={this.hideMenu3}>you'r shop</MenuItem>
 							<MenuDivider />
 							<MenuItem onPress={this.hideMenu} disabled>
 								logout

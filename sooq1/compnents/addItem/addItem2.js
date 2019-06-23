@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Button, ScrollView } from 'react-native';
-import { Actions } from 'react-native-router-flux';
-import Header from '../header';
-import Footer from '../footer';
-import Category from './category';
-import InputFiled from './inputFiled';
-import UploudImage from './uploudImage';
+import { StyleSheet, AsyncStorage } from 'react-native';
 import AddItem from './addItem';
-// import console = require('console');
+
 export default class AddItem2 extends Component {
 	constructor(props) {
 		super(props);
@@ -26,12 +20,17 @@ export default class AddItem2 extends Component {
 		};
 	}
 
-	// onChange(r, s) {
-	// 	this.setState({
-	// 		r: s
-	// 	});
-	// 	console.warn(this.state.descrbtion, r, s);
-	// }
+	componentWillMount() {
+		AsyncStorage.getItem('userId')
+			.then((value) => {
+				this.setState({
+					userId: value
+				});
+			})
+			.catch((error) => {
+				console.warn(error);
+			});
+	}
 
 	onChange1(text) {
 		this.setState({
@@ -66,7 +65,6 @@ export default class AddItem2 extends Component {
 		this.setState({
 			img: imgUrl
 		});
-		// console.warn(imgUrl);
 	}
 	done() {
 		fetch('http://192.168.0.14:3000/addMerc', {

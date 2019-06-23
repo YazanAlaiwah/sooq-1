@@ -1,3 +1,4 @@
+const { sequelize } = require('./database/dp');
 const {
 	User,
 	Item,
@@ -24,28 +25,38 @@ exports.addMerchandise = (req, res) => {
 	}).then((idcc) => {
 		console.log(idcc.dataValues);
 		Item.create({
-			img: img,
 			descrbtion: descrbtion,
 			title: title,
 			cost: cost,
 			userId: userId,
-			categoryId: idcc.dataValues.id
+			categoryId: idcc.dataValues.id,
+			clicked: 0
 		}).then((data) => {
-			// console.log(data);
-			res.send(data);
+			console.log(data);
+			Image.create({
+				img: img,
+				itemId: data.dataValues.id
+			}).then((data) => {
+				res.send(data);
+			});
 		});
 	});
 };
 
 exports.removeMerchandise = (req, res) => {
 	console.log(req.body);
-	Item.destroy({
+	Image.destroy({
 		where: {
-			id: req.body.id
+			itemId: req.body.id
 		}
 	}).then((data) => {
-		console.log(data);
-		res.sendStatus(204);
+		Item.destroy({
+			where: {
+				id: req.body.id
+			}
+		}).then((data) => {
+			res.sendStatus(204);
+		});
 	});
 };
 exports.seeSpaceficCategory = (req, res) => {
@@ -99,13 +110,9 @@ exports.seeUserInfo = (req, res) => {
 	});
 };
 exports.seeUserMerc = (req, res) => {
-	Item.findAll({
-		where: {
-			userId: req.query.id
-		}
-	}).then((data) => {
-		res.send(data);
-	});
+	sequelize
+		.query(`select * from items join images where userId = ${req.query.id} and itemId = items.id`)
+		.then((data) => res.send(data[0]));
 };
 exports.imageitem = (req, res) => {
 	Image.findAll({
@@ -142,5 +149,65 @@ exports.addcommint = (req, res) => {
 	Comment.create({
 		comment: req.body.text,
 		itemId: req.body.id
+	});
+};
+exports.itemClicked = (req, res) => {
+	console.log(req.body);
+	Item.update({ clicked: sequelize.literal('clicked + 1') }, { where: { id: req.body.itemId } });
+	Item_Watched.findOne({
+		where: {
+			itemId: req.body.itemId,
+			userId: req.body.userId
+		}
+	}).then((data) => {
+		if (!data) {
+			console.log('hello');
+			Item_Watched.create({
+				itemId: req.body.itemId,
+				userId: req.body.userId
+			}).catch(function(err) {
+				// print the error details
+				console.log(err, 'request.body.email');
+			});
+		}
+	});
+};
+exports.watched = (req, res) => {
+	Item_Watched.findAll({
+		where: {
+			userId: req.query.id
+		},
+		include: [
+			{
+				model: Item
+			}
+		]
+	}).then((data) => res.send(data));
+};
+exports.clicked = (req, res) => {
+	Item.findOne({
+		attributes: [ 'clicked' ],
+		where: {
+			id: req.query.id
+		}
+	}).then((data) => res.send(data));
+};
+exports.addshop = (req, res) => {
+	console.log(req.body);
+	Shop.create({
+		img: req.body.data.img,
+		type: req.body.data.specfic,
+		descrbtion: req.body.data.descrbtion,
+		saturday: req.body.data.saturday,
+		sunday: req.body.data.sunday,
+		monday: req.body.data.monday,
+		tuseday: req.body.data.tuseday,
+		wednesday: req.body.data.wednesday,
+		thuresday: req.body.data.thuresday,
+		friday: req.body.data.friday,
+		userId: req.body.userId,
+		location: req.body.data.location,
+		phonenumber: Number(req.body.data.phonenumber),
+		name: req.body.data.name
 	});
 };

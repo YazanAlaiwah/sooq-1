@@ -14,5 +14,9 @@ sooqRouter.route('/imageitem').get(Merchandise.imageitem);
 sooqRouter.route('/itempage').get(Merchandise.itempage);
 sooqRouter.route('/itemcommint').get(Merchandise.itemcommint);
 sooqRouter.route('/addcommint').post(Merchandise.addcommint);
+sooqRouter.route('/itemClicked').post(Merchandise.itemClicked);
+sooqRouter.route('/watched').get(Merchandise.watched);
+sooqRouter.route('/clicked').get(Merchandise.clicked);
+sooqRouter.route('/addshop').post(Merchandise.addshop);
 
 module.exports = sooqRouter;

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, AsyncStorage, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import Header from '../header';
+import Footer from '../footer';
 
-export default class Login extends Component {
+export default class UserShop extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { email: 'Ss', password: '123', token: '', id: '' };
@@ -46,26 +48,10 @@ export default class Login extends Component {
 
 	render() {
 		return (
-			<View style={styles.container}>
-				<View style={styles.containerInfo}>
-					<Text>email</Text>
-					<TextInput
-						style={{ height: 40, width: 200, borderColor: 'gray', borderWidth: 1 }}
-						onChangeText={(email) => this.setState({ email })}
-						placeholder="EX.email@gmail.com"
-					/>
-					<Text>password</Text>
-					<TextInput
-						style={{ height: 40, width: 200, borderColor: 'gray', borderWidth: 1 }}
-						onChangeText={(password) => this.setState({ password })}
-						placeholder="********"
-					/>
-					<Text style={{ color: 'blue' }} onPress={() => Actions.signup()}>
-						signup
-					</Text>
-					<Button onPress={this.test.bind(this)} title="login" />
-					<Button onPress={this.test1.bind(this)} title="logindfsdsf" />
-				</View>
+			<View>
+				<Header />
+				<Image source={{ uri: this.state.img }} style={styles.img} />
+				<Footer />
 			</View>
 		);
 	}
@@ -80,5 +66,6 @@ const styles = StyleSheet.create({
 	},
 	containerInfo: {
 		backgroundColor: '#FDFEE8'
-	}
+	},
+	img: { width: '100%', height: 300 }
 });

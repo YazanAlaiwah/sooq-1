@@ -4,6 +4,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
+// import console = require('console');
 
 export default function Footer() {
 	homePage = () => {
@@ -26,7 +28,7 @@ export default function Footer() {
 					</View>
 
 					<View style={{ flexDirection: 'column', justifyContent: 'flex-end' }}>
-						<Icon name="md-add" size={50} color="#FFFFFF" onPress={this.addItem} />
+						<MaterialCommunityIcons onPress={() => Actions.shop()} name="store" size={50} color="white" />
 					</View>
 
 					<View style={{ flexDirection: 'column', justifyContent: 'flex-end' }}>

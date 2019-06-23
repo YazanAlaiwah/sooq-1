@@ -8,6 +8,10 @@ import AddItem2 from './compnents/addItem/addItem2';
 import UserPage from './compnents/userPage/userPage';
 import ListOfItems from './compnents/listOfItems/listOfItems';
 import ItemPage from './compnents/itemPage/itemPage';
+import Watched from './compnents/watched/watched';
+import Shop from './compnents/shop/shop';
+import AddShop from './compnents/shop/addShop';
+import UserShop from './compnents/shop/userShop';
 export default class App extends React.Component {
 	constructor(props) {
 		super(props);
@@ -17,8 +21,12 @@ export default class App extends React.Component {
 		return (
 			<Router>
 				<Scene key="root">
+					<Scene key="usershop" component={UserShop} initial hideNavBar={true} />
+					<Scene key="addshop" component={AddShop} hideNavBar={true} />
+					<Scene key="shop" component={Shop} hideNavBar={true} />
+					<Scene key="watched" component={Watched} hideNavBar={true} />
 					<Scene key="listofitems" component={ListOfItems} hideNavBar={true} />
-					<Scene key="signup" component={Signup} initial hideNavBar={true} />
+					<Scene key="signup" component={Signup} hideNavBar={true} />
 					<Scene key="spacficCategory" component={SubCategory} hideNavBar={true} />
 					<Scene key="login" component={Login} hideNavBar={true} />
 					<Scene key="userpage" component={UserPage} hideNavBar={true} />
