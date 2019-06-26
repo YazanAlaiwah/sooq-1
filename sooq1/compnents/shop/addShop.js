@@ -37,11 +37,12 @@ export default class AddShop extends React.Component {
 			name: '',
 			location: '',
 			phonenumber: '',
+
 			sunday: '',
 
 			monday: '',
 
-			tuseday: '',
+			tuesday: '',
 
 			wednesday: '',
 
@@ -244,7 +245,7 @@ export default class AddShop extends React.Component {
 
 							<Text>tuseday:</Text>
 
-							<TextInput onChangeText={(text) => this.onChange('tuseday', text)} style={styles.input} />
+							<TextInput onChangeText={(text) => this.onChange('tuesday', text)} style={styles.input} />
 
 							<Text>wednesday:</Text>
 

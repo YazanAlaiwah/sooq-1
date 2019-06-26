@@ -101,7 +101,7 @@ exports.seeListMerchandise = (req, res) => {
 };
 exports.seeUserInfo = (req, res) => {
 	User.findOne({
-		attributes: [ 'name', 'img', 'location' ],
+		attributes: [ 'name', 'img', 'location', 'createdAt' ],
 		where: {
 			id: req.query.id
 		}
@@ -132,7 +132,7 @@ exports.itempage = (req, res) => {
 		include: [
 			{
 				model: User,
-				attributes: [ 'name', 'location', 'img' ]
+				attributes: [ 'name', 'location', 'img', 'phonenumber' ]
 			}
 		]
 	}).then((data) => res.send(data));
@@ -201,7 +201,7 @@ exports.addshop = (req, res) => {
 		saturday: req.body.data.saturday,
 		sunday: req.body.data.sunday,
 		monday: req.body.data.monday,
-		tuseday: req.body.data.tuseday,
+		tuesday: req.body.data.tuesday,
 		wednesday: req.body.data.wednesday,
 		thuresday: req.body.data.thuresday,
 		friday: req.body.data.friday,
@@ -210,4 +210,73 @@ exports.addshop = (req, res) => {
 		phonenumber: Number(req.body.data.phonenumber),
 		name: req.body.data.name
 	});
+};
+exports.shopinfo = (req, res) => {
+	Shop.findOne({
+		where: {
+			userId: req.query.id
+		}
+	}).then((data) => res.send(data));
+};
+exports.additemshop = (req, res) => {
+	console.log(req.body);
+	Shop.findOne({
+		where: {
+			id: req.body.shopId
+		}
+	}).then((data) => {
+		Category.findOne({
+			where: {
+				specfic: data.dataValues.type
+			},
+			attributes: [ 'id' ]
+		}).then((idcc) => {
+			Item.create({
+				descrbtion: req.body.descrbtion,
+				title: req.body.title,
+				cost: req.body.cost,
+				shopId: req.body.shopId,
+				categoryId: idcc.dataValues.id,
+				clicked: 0
+			}).then((data) => {
+				console.log(data);
+				Image.create({
+					img: req.body.img,
+					itemId: data.dataValues.id
+				}).then((data) => {
+					console.log(data);
+				});
+			});
+		});
+	});
+};
+exports.showshops = (req, res) => {
+	Shop.findAll({}).then((data) => res.send(data));
+};
+exports.showshoppage = (req, res) => {
+	Shop.findOne({
+		where: {
+			id: req.query.id
+		}
+	}).then((data) => res.send(data));
+};
+exports.addcommintshop = (req, res) => {
+	Comment.create({
+		comment: req.body.text,
+		shopId: req.body.id
+	});
+};
+exports.shopcommint = (req, res) => {
+	Comment.findAll({
+		attributes: [ 'comment' ],
+		where: {
+			shopId: req.query.id
+		}
+	}).then((commint) => res.send(commint));
+};
+exports.seeShopMerc = (req, res) => {
+	console.log('hello datajfdkjjk');
+	sequelize
+		.query(`select * from items join images where shopId = ${req.query.id} and itemId = items.id`)
+		.then((data) => res.send(data[0]));
 };

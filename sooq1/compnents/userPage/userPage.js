@@ -20,13 +20,17 @@ export default class UserPage extends Component {
 	componentWillMount() {
 		AsyncStorage.getItem('userId')
 			.then((value) => {
-				fetch(`http://192.168.0.14:3000/seeUserInfo?id=${value}`)
-					.then((data) => data.json())
-					.then((data) => console.warn(data)),
+				fetch(`http://192.168.0.14:3000/seeUserInfo?id=${value}`).then((data) => data.json()).then((data) =>
+					this.setState({
+						name: data.name,
+						img: data.img,
+						location: data.location
+					})
+				),
 					fetch(`http://192.168.0.14:3000/seeUserMerc?id=${value}`)
 						.then((data) => data.json())
 						.then((data) => {
-							console.warn(data);
+							// console≥\.warn(data);
 							this.setState({ Merc: data });
 						});
 			})
@@ -37,8 +41,8 @@ export default class UserPage extends Component {
 	render() {
 		return (
 			<View style={{ flex: 1, justifyContent: 'space-around', flexDirection: 'column' }}>
-				<Header />
 				<ScrollView>
+					<Header />
 					<UserImage image={this.state.img} />
 
 					<UserInfo data={this.state} />

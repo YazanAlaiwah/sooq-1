@@ -18,5 +18,12 @@ sooqRouter.route('/itemClicked').post(Merchandise.itemClicked);
 sooqRouter.route('/watched').get(Merchandise.watched);
 sooqRouter.route('/clicked').get(Merchandise.clicked);
 sooqRouter.route('/addshop').post(Merchandise.addshop);
+sooqRouter.route('/shopinfo').get(Merchandise.shopinfo);
+sooqRouter.route('/showshops').get(Merchandise.showshops);
+sooqRouter.route('/showshoppage').get(Merchandise.showshoppage);
+sooqRouter.route('/shopcommint').get(Merchandise.shopcommint);
+sooqRouter.route('/seeShopMerc').get(Merchandise.seeShopMerc);
+sooqRouter.route('/additemshop').post(Merchandise.additemshop);
+sooqRouter.route('/addcommintshop').post(Merchandise.addcommintshop);
 
 module.exports = sooqRouter;

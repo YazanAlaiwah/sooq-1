@@ -17,7 +17,7 @@ export default class Watched extends React.Component {
 			.then((value) => {
 				fetch(`http://192.168.0.14:3000/watched?id=${value}`)
 					.then((data) => data.json())
-					.then((data) => this.setState({ Merc: data }));
+					.then((data) => console.warn(data));
 			})
 			.catch((error) => {
 				console.warn(error);

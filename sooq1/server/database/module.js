@@ -149,7 +149,8 @@ const Frinde = sequelize.define('frinds', {
 	}
 });
 const Item_Watched = sequelize.define('item_watched', {
-	id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
+	id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true, unique: true },
+	bla: { type: Sequelize.STRING },
 	createdAt: {
 		allowNull: true,
 		type: Sequelize.DATE,
@@ -164,13 +165,13 @@ User.hasMany(Chat);
 Chat.belongsTo(User, { as: 'user1' });
 Chat.belongsTo(User, { as: 'user2' });
 User.hasMany(Item);
-Item.belongsTo(User);
+Item.belongsTo(User, { through: 'item' });
 User.hasMany(Watched);
 Watched.belongsTo(User);
 User.hasMany(Shop);
 Shop.belongsTo(User);
-Item.belongsToMany(Watched, { through: Item_Watched });
-Watched.belongsToMany(User, { through: Item_Watched });
+Item.belongsToMany(User, { through: 'item_watched' });
+User.belongsToMany(Item, { through: 'item_watched' });
 Item.hasMany(Image);
 Image.belongsTo(Item);
 Item.hasMany(Comment);

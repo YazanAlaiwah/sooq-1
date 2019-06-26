@@ -21,6 +21,30 @@ module.exports = [
 		id: '4',
 		uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTK-K8j6SxB7Pb0sf3InWEnfiG68HfpIxCJHttUJ1bA5n5KyV_',
 		section: 'electronic devices'
+	},
+	{
+		id: '5',
+		uri:
+			'https://firebasestorage.googleapis.com/v0/b/mobishop-ffcff.appspot.com/o/items%2Fwomen.jpeg?alt=media&token=1ce6dcda-f0ca-4a57-9b1a-b258f22ae5fb',
+		section: 'women clothing'
+	},
+	{
+		id: '6',
+		uri:
+			'https://firebasestorage.googleapis.com/v0/b/mobishop-ffcff.appspot.com/o/items%2Fmen.jpeg?alt=media&token=bf707e27-49ae-4f48-acc9-465de89abb2c',
+		section: 'men clothing'
+	},
+	{
+		id: '7',
+		uri:
+			'https://firebasestorage.googleapis.com/v0/b/mobishop-ffcff.appspot.com/o/items%2Fanimals.jpeg?alt=media&token=4ed9c88b-610f-4775-8046-6aaebdebc9d5',
+		section: 'animals'
+	},
+	{
+		id: '8',
+		uri:
+			'https://firebasestorage.googleapis.com/v0/b/mobishop-ffcff.appspot.com/o/items%2Fjobs.jpeg?alt=media&token=8f96c857-208b-4c93-bd9d-6564bfc2d046',
+		section: 'jobs'
 	}
 ];
 // module.exports.sections;

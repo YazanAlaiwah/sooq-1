@@ -31,18 +31,34 @@ export default class Items extends React.Component {
 		return (
 			<ScrollView>
 				{/* <View style={{ flexDirection: 'row' }}> */}
-				<View style={{ flex: 1, flexDirection: 'column' }}>
+				<View style={{ flex: 1, flexDirection: 'column', alignItems: 'center' }}>
 					{this.props.data.map((item, index) => {
+						// console.warn(item.item.descrbtion);
 						if (id === item.item.id) {
 							return;
 						} else {
 							id = item.item.id;
 							return (
-								<View key={item.item.id} style={{ flexDirection: 'row', flex: 1 }}>
-									<TouchableOpacity onPress={this.ItemPage.bind(this, item.item.id)}>
+								<View
+									key={item.item.id}
+									style={{
+										borderRadius: 20,
+										borderWidth: 0.5,
+										borderColor: '#d6d7da',
+										flexDirection: 'row',
+										flex: 1,
+										width: '100%',
+										margin: 5,
+										backgroundColor: 'white'
+									}}
+								>
+									<TouchableOpacity
+										style={{ flexDirection: 'row', flex: 1 }}
+										onPress={this.ItemPage.bind(this, item.item.id)}
+									>
 										<Image
 											source={{ uri: item.img }}
-											style={{ width: 175, height: 160, borderRadius: 25 }}
+											style={{ width: '50%', height: 130, borderRadius: 25 }}
 										/>
 										{/* <View
 											style={{
@@ -50,24 +66,18 @@ export default class Items extends React.Component {
 												justifyContent: 'center',
 												alignItems: 'center'
 											}}
-										> */}
+                    > */}
+										<View style={{ width: 10 }} />
 										<View style={{ flex: 1, flexDirection: 'column' }}>
-											<View
-												style={{
-													borderRadius: 4,
-													borderWidth: 0.5,
-													borderColor: '#d6d7da'
-												}}
-											>
+											<View>
 												<View style={{ flex: 1, flexDirection: 'column' }}>
-													<Text style={{ color: 'green', fontSize: 15 }}>Type:</Text>
-													<Text>{item.item.title}</Text>
+													<Text style={{ fontFamily: 'notoserif', fontSize: 25 }}>
+														{item.item.title}
+													</Text>
 
-													<Text style={{ color: 'red', fontSize: 15 }}>Descrbtion:</Text>
 													<Text>{item.item.descrbtion}</Text>
 
-													<Text style={{ color: 'red', fontSize: 15 }}>Cost:</Text>
-													<Text>{item.item.cost}</Text>
+													<Text style={{ color: 'red' }}>{item.item.cost}$</Text>
 												</View>
 											</View>
 										</View>

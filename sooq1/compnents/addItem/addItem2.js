@@ -8,7 +8,7 @@ export default class AddItem2 extends Component {
 		this.state = {
 			userId: '1',
 			img:
-				'https://firebasestorage.googleapis.com/v0/b/mobishop-ffcff.appspot.com/o/items%2Fqury.png?alt=media&token=a30d14fe-888b-4158-b0d0-473a6f9f7f73',
+				'https://firebasestorage.googleapis.com/v0/b/mobishop-ffcff.appspot.com/o/items%2Fadd.png?alt=media&token=149c9514-d41c-47eb-a775-28f09c46a984',
 			type: 'others',
 			specficArr: [],
 			specfic: '',

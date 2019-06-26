@@ -39,6 +39,12 @@ export default function Header() {
 		// this._menu = ref;
 		Actions.usershop();
 	};
+	hideMenu4 = () => {
+		// console.warn(arr);
+		this._menu.hide();
+		// this._menu = ref;
+		Actions.login();
+	};
 
 	showMenu = () => {
 		this._menu.show();
@@ -46,7 +52,7 @@ export default function Header() {
 	return (
 		<View>
 			<View style={{ backgroundColor: 'green', height: 23 }} />
-			<View style={{ backgroundColor: '#1F2833', height: 70 }}>
+			<View style={{ backgroundColor: '#616161', height: 70 }}>
 				<View
 					style={{
 						flexDirection: 'row',
@@ -66,9 +72,7 @@ export default function Header() {
 							<MenuItem onPress={this.hideMenu2}>addItem</MenuItem>
 							<MenuItem onPress={this.hideMenu3}>you'r shop</MenuItem>
 							<MenuDivider />
-							<MenuItem onPress={this.hideMenu} disabled>
-								logout
-							</MenuItem>
+							<MenuItem onPress={this.hideMenu4}>logout</MenuItem>
 						</Menu>
 					</View>
 				</View>

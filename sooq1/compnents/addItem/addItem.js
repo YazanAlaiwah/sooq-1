@@ -65,6 +65,7 @@ export default class AddItem extends Component {
 						</View>
 
 						<Button
+							color="grey"
 							title="done"
 							onPress={() => this.props.done()}
 							style={{

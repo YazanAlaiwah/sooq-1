@@ -12,6 +12,8 @@ import Watched from './compnents/watched/watched';
 import Shop from './compnents/shop/shop';
 import AddShop from './compnents/shop/addShop';
 import UserShop from './compnents/shop/userShop';
+import AddItemShop from './compnents/shop/addItemShop';
+import ShopPage from './compnents/shop/shopPage';
 export default class App extends React.Component {
 	constructor(props) {
 		super(props);
@@ -21,14 +23,16 @@ export default class App extends React.Component {
 		return (
 			<Router>
 				<Scene key="root">
-					<Scene key="usershop" component={UserShop} initial hideNavBar={true} />
+					<Scene key="shoppage" component={ShopPage} hideNavBar={true} />
+					<Scene key="additemshop" component={AddItemShop} hideNavBar={true} />
+					<Scene key="usershop" component={UserShop} hideNavBar={true} />
 					<Scene key="addshop" component={AddShop} hideNavBar={true} />
 					<Scene key="shop" component={Shop} hideNavBar={true} />
 					<Scene key="watched" component={Watched} hideNavBar={true} />
 					<Scene key="listofitems" component={ListOfItems} hideNavBar={true} />
 					<Scene key="signup" component={Signup} hideNavBar={true} />
 					<Scene key="spacficCategory" component={SubCategory} hideNavBar={true} />
-					<Scene key="login" component={Login} hideNavBar={true} />
+					<Scene key="login" component={Login} initial hideNavBar={true} />
 					<Scene key="userpage" component={UserPage} hideNavBar={true} />
 					<Scene key="home" component={MainPage} hideNavBar={true} />
 					<Scene key="additem" component={AddItem2} hideNavBar={true} />

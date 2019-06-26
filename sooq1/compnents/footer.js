@@ -16,7 +16,7 @@ export default function Footer() {
 	};
 	return (
 		<View>
-			<View style={{ backgroundColor: '#1F2833', height: 50 }}>
+			<View style={{ backgroundColor: '#616161', height: 50 }}>
 				<View
 					style={{
 						flexDirection: 'row',

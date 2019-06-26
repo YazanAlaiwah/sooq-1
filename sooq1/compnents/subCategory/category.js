@@ -23,13 +23,16 @@ export default class Category extends Component {
 							style={styles.container1}
 							onPress={this.seeList.bind(this, item.id)}
 						>
-							<View style={styles.container}>
-								<Image
-									source={{
-										uri: item.img
-									}}
-									style={styles.photo}
-								/>
+							<View
+								style={{
+									justifyContent: 'center',
+									alignItems: 'center',
+									flex: 1,
+									borderRadius: 20,
+									backgroundColor: item.img,
+									height: 80
+								}}
+							>
 								<View style={styles.container_text}>
 									<Text style={styles.title}>{item.specfic}</Text>
 								</View>
@@ -46,7 +49,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		flex: 1,
 		borderRadius: 20,
-		backgroundColor: '#FEFBF1'
+		backgroundColor: 'blue'
 	},
 	container1: {
 		marginTop: 100,
@@ -63,13 +66,14 @@ const styles = StyleSheet.create({
 	},
 	title: {
 		fontSize: 30,
-		color: '#000'
+		color: 'white'
 	},
 	container_text: {
 		flex: 1,
 		flexDirection: 'column',
 		marginLeft: 12,
-		justifyContent: 'center'
+		justifyContent: 'center',
+		color: 'white'
 	},
 	photo: {
 		height: 130,

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 var arr = require('../../data/sections.js');
 
@@ -20,28 +20,110 @@ export default class Sections extends Component {
 	render() {
 		return (
 			<View style={styles.maincontainer}>
-				{arr.map((item) => {
-					return (
-						<TouchableOpacity
-							name="dsfdsf"
-							onPress={this.cato.bind(this, item.section)}
-							style={styles.container1}
-							key={item.section}
-						>
-							<View style={styles.container_map}>
-								<Image
-									source={{
-										uri: item.uri
-									}}
-									style={styles.photo}
-								/>
-								<View style={styles.container_text}>
-									<Text style={styles.title}>{item.section}</Text>
-								</View>
-							</View>
-						</TouchableOpacity>
-					);
-				})}
+				<View style={{ flexDirection: 'column', flex: 1 }}>
+					{arr.map((item, i) => {
+						if (i % 2 === 0) {
+							return (
+								<TouchableOpacity
+									name="dsfdsf"
+									onPress={this.cato.bind(this, item.section)}
+									style={styles.container1}
+									key={item.section}
+								>
+									<View
+										style={{
+											borderRadius: 20,
+											paddingTop: 5,
+											paddingBottom: 0,
+											paddingLeft: 3,
+											paddingRight: 3
+										}}
+									>
+										{/* <Image
+										source={{
+											uri: item.uri
+										}}
+										style={styles.photo}
+									/>
+									<View style={styles.container_text}>
+										<Text style={styles.title}>{item.section}</Text>
+									</View> */}
+										<ImageBackground
+											imageStyle={{ borderRadius: 10 }}
+											source={{ uri: item.uri }}
+											style={styles.photo}
+										>
+											<View
+												style={{
+													backgroundColor: 'white',
+													width: 130,
+													marginLeft: 5,
+													marginTop: 5,
+													borderRadius: 10,
+													paddingLeft: 3
+												}}
+											>
+												<Text style={{ fontFamily: 'sans-serif-medium' }}>{item.section}</Text>
+											</View>
+										</ImageBackground>
+									</View>
+								</TouchableOpacity>
+							);
+						}
+					})}
+				</View>
+				<View style={{ flexDirection: 'column', flex: 1 }}>
+					{arr.map((item, i) => {
+						if (i % 2 !== 0) {
+							return (
+								<TouchableOpacity
+									name="dsfdsf"
+									onPress={this.cato.bind(this, item.section)}
+									style={styles.container1}
+									key={item.section}
+								>
+									<View
+										style={{
+											borderRadius: 20,
+											paddingTop: 5,
+											paddingBottom: 0,
+											paddingLeft: 5,
+											paddingRight: 5
+										}}
+									>
+										{/* <Image
+										source={{
+											uri: item.uri
+										}}
+										style={styles.photo}
+									/>
+									<View style={styles.container_text}>
+										<Text style={styles.title}>{item.section}</Text>
+									</View> */}
+										<ImageBackground
+											imageStyle={{ borderRadius: 10 }}
+											source={{ uri: item.uri }}
+											style={styles.photo}
+										>
+											<View
+												style={{
+													backgroundColor: 'white',
+													width: 130,
+													marginLeft: 5,
+													marginTop: 5,
+													borderRadius: 10,
+													paddingLeft: 3
+												}}
+											>
+												<Text style={{ fontFamily: 'sans-serif-medium' }}>{item.section}</Text>
+											</View>
+										</ImageBackground>
+									</View>
+								</TouchableOpacity>
+							);
+						}
+					})}
+				</View>
 			</View>
 		);
 	}
@@ -49,24 +131,24 @@ export default class Sections extends Component {
 
 const styles = StyleSheet.create({
 	maincontainer: {
-		flexDirection: 'column',
+		flexDirection: 'row',
 		justifyContent: 'center',
 		alignItems: 'stretch',
 		flex: 1
 	},
-	container1: {
-		marginTop: 100,
-		flex: 1,
-		flexDirection: 'row',
+	// container1: {
+	// 	// marginTop: 100,
+	// 	// flex: 1,
+	// 	// flexDirection: 'row',
 
-		marginLeft: 16,
-		marginRight: 16,
-		marginTop: 8,
-		marginBottom: 8,
-		borderRadius: 20,
-		backgroundColor: '#FFF',
-		elevation: 2
-	},
+	// 	// marginLeft: 16,
+	// 	// marginRight: 16,
+	// 	// marginTop: 8,
+	// 	// marginBottom: 8,
+	// 	borderRadius: 20
+
+	// 	// elevation: 2
+	// },
 	title: {
 		fontSize: 35,
 		color: '#000',
@@ -81,12 +163,16 @@ const styles = StyleSheet.create({
 
 	photo: {
 		height: 150,
-		width: 150
-	},
-	container_map: {
-		flexDirection: 'row',
-		flex: 1,
-		borderRadius: 20,
-		backgroundColor: '#FEFBF1'
+		width: '100%'
+		// flexDirection: 'row',
+		// flex:1,
+		// borderRadius: 20,
+		// justifyContent: 'flex-start'
 	}
+	// container_map: {
+	// 	// flexDirection: 'row',
+	// 	// flex: 1,
+	// 	borderRadius: 20,
+	// 	backgroundColor: '#FEFBF1'
+	// }
 });

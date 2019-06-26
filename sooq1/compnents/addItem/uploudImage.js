@@ -8,7 +8,7 @@ export default class UploudImage extends Component {
 		super(props);
 		this.state = {
 			img:
-				'https://firebasestorage.googleapis.com/v0/b/mobishop-ffcff.appspot.com/o/items%2Fqury.png?alt=media&token=a30d14fe-888b-4158-b0d0-473a6f9f7f73'
+				'https://firebasestorage.googleapis.com/v0/b/mobishop-ffcff.appspot.com/o/items%2Fadd.png?alt=media&token=149c9514-d41c-47eb-a775-28f09c46a984'
 		};
 	}
 
@@ -64,10 +64,10 @@ export default class UploudImage extends Component {
 				<View style={styles.button_contanir}>
 					<View style={styles.button_contanir1}>
 						<View style={styles.button}>
-							<Button title="take image.." onPress={this.onChooseImageUploud} color="black" />
+							<Button title="take image.." onPress={this.onChooseImageUploud} color="grey" />
 						</View>
 						<View style={styles.button}>
-							<Button title="chosee image.." onPress={this.onChooseImageUploud2} color="black" />
+							<Button title="chosee image.." onPress={this.onChooseImageUploud2} color="grey" />
 						</View>
 					</View>
 				</View>
