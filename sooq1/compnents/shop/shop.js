@@ -3,10 +3,6 @@ import Header from '../header';
 import Footer from '../footer';
 import { Actions } from 'react-native-router-flux';
 import { View, Text, Button, TouchableOpacity, Image } from 'react-native';
-// import console = require('console');
-// import console = require('console');
-// import console = require('console');
-// import console = require('console');
 
 export default class Shop extends React.Component {
 	constructor(props) {
@@ -46,10 +42,6 @@ export default class Shop extends React.Component {
 								backgroundColor: 'white'
 							}}
 						>
-							{/* <TouchableOpacity
-								style={{ flexDirection: 'row', flex: 1 }}
-								onPress={this.shoppage.bind(this, item.id)}
-              > */}
 							<TouchableOpacity
 								style={{ flexDirection: 'row', flex: 1 }}
 								onPress={() => this.shoppage.bind(this, item.id)}

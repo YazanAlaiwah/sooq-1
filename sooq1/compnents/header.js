@@ -1,7 +1,6 @@
 import { Router, Scene } from 'react-native-router-flux';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-
 import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Actions } from 'react-native-router-flux';

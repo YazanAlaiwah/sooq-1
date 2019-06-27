@@ -64,7 +64,6 @@ export default class Login extends Component {
 						signup
 					</Text>
 					<Button onPress={this.test.bind(this)} title="login" />
-					<Button onPress={this.test1.bind(this)} title="logindfsdsf" />
 				</View>
 			</View>
 		);
