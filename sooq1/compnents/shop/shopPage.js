@@ -1,16 +1,14 @@
 import React from 'react';
 import Header from '../header';
-import Footer from '../footer';
-import { Actions } from 'react-native-router-flux';
 import { View, Text, Button, TouchableOpacity, TextInput, ScrollView, Image } from 'react-native';
-
 export default class ShopPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			shops: [],
 			commint: [],
-			text: ''
+			text: '',
+			Merc: []
 		};
 	}
 	test() {
@@ -25,15 +23,11 @@ export default class ShopPage extends React.Component {
 				id: this.props.shopId
 			})
 		});
-		// .then((res) => res.json())
-		// .then((res) => console.warn(res));
 		this.setState({
 			commint: [ ...this.state.commint, this.state.text ],
-			text: '',
-			Merc: []
+			text: ''
 		});
 	}
-
 	componentWillMount() {
 		fetch(`http://192.168.0.14:3000/showshoppage?id=${this.props.shopId}`)
 			.then((data) => data.json())
@@ -53,7 +47,6 @@ export default class ShopPage extends React.Component {
 				});
 			});
 	}
-
 	render() {
 		return (
 			<ScrollView style={{ flex: 1, flexDirection: 'column' }}>
@@ -100,7 +93,43 @@ export default class ShopPage extends React.Component {
 					<Text>friday:</Text>
 					<Text>{this.state.shops.friday}</Text>
 					<View style={{ height: 10 }} />
-					<Text>commint:</Text>
+					{/* {this.state.shops.map((item) => {
+						if (id === item.itemId) {
+							return;
+						} else {
+							id = item.itemId;
+							return (
+								<TouchableOpacity
+									style={{
+										flexDirection: 'column',
+										width: '90%'
+									}}
+									onPress={() => Actions.itempage({ id: item.itemId })}
+								>
+									<View
+										key={item.id}
+										style={{
+											flexDirection: 'column',
+											width: '90%'
+										}}
+									>
+										<Image source={{ uri: item.img }} style={{ width: '100%', height: 150 }} />
+										<View style={{ width: 100 }}>
+											<Text>{item.title}</Text>
+											<View style={{ height: 100 }}>
+												<ScrollView>
+													<Text>{item.descrbtion}</Text>
+												</ScrollView>
+											</View>
+
+											<Text style={{ color: 'red' }}>{item.cost}$</Text>
+										</View>
+									</View>
+								</TouchableOpacity>
+							);
+						}
+					})} */}
+					<Text style={{ fontSize: 20 }}>commint:</Text>
 					<View style={{ borderColor: 'grey', borderWidth: 1 }}>
 						{(this.state.commint || []).map((item, index) => {
 							return (

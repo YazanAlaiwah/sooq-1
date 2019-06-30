@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, AsyncStorage } from 'react-native';
+import { StyleSheet, AsyncStorage, Alert } from 'react-native';
 import AddItem from './addItem';
 
 export default class AddItem2 extends Component {
@@ -76,7 +76,7 @@ export default class AddItem2 extends Component {
 			body: JSON.stringify(this.state)
 		})
 			.then((data) => data.json())
-			.then((data) => console.warn(data));
+			.then((data) => Alert.alert(done));
 	}
 
 	type(va) {

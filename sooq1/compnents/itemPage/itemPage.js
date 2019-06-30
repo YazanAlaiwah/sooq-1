@@ -161,7 +161,7 @@ export default class ItemPage extends React.Component {
 						</View>
 					</TouchableOpacity>
 					<View style={{ height: 20 }} />
-					<Text>commint:</Text>
+					<Text style={{ fontSize: 20 }}>commint:</Text>
 					<View style={{ width: '90%', borderColor: 'grey', borderWidth: 1, borderRadius: 10 }}>
 						{(this.state.commint || []).map((item, index) => {
 							return (

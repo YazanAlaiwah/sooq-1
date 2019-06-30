@@ -24,7 +24,7 @@ export default class UserInfo extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			id: '1',
+			id: '',
 			name: '',
 			img: '',
 			location: '',
@@ -34,14 +34,16 @@ export default class UserInfo extends React.Component {
 	componentWillMount() {
 		AsyncStorage.getItem('userId')
 			.then((value) => {
-				fetch(`http://192.168.0.14:3000/seeUserInfo?id=${value}`).then((data) => data.json()).then((data) =>
-					this.setState({
-						name: data.name,
-						img: data.img,
-						location: data.location
-					})
-				),
-					fetch(`http://192.168.0.14:3000/seeUserMerc?id=${value}`)
+				fetch(`http://192.168.0.14:3000/seeUserInfo?id=${this.props.id}`)
+					.then((data) => data.json())
+					.then((data) =>
+						this.setState({
+							name: data.name,
+							img: data.img,
+							location: data.location
+						})
+					),
+					fetch(`http://192.168.0.14:3000/seeUserMerc?id=${this.props.id}`)
 						.then((data) => data.json())
 						.then((data) => {
 							// console≥\.warn(data);
@@ -118,7 +120,6 @@ export default class UserInfo extends React.Component {
 						style={{
 							flex: 1,
 							flexDirection: 'column',
-							// alignItems: 'center',
 							justifyContent: 'space-between'
 						}}
 					>
@@ -135,64 +136,36 @@ export default class UserInfo extends React.Component {
 									} else {
 										id = item.itemId;
 										return (
-											<View
-												key={item.id}
+											<TouchableOpacity
 												style={{
 													flexDirection: 'column',
 													width: '90%'
 												}}
+												onPress={() => Actions.itempage({ id: item.itemId })}
 											>
-												<Image
-													source={{ uri: item.img }}
-													style={{ width: '100%', height: 150 }}
-												/>
-												<View style={{ width: 100 }}>
-													<Text>{item.title}</Text>
-													<View style={{ height: 100 }}>
-														<ScrollView>
-															<Text>{item.descrbtion}</Text>
-														</ScrollView>
-													</View>
+												<View
+													key={item.id}
+													style={{
+														flexDirection: 'column',
+														width: '90%'
+													}}
+												>
+													<Image
+														source={{ uri: item.img }}
+														style={{ width: '100%', height: 150 }}
+													/>
+													<View style={{ width: 100 }}>
+														<Text>{item.title}</Text>
+														<View style={{ height: 100 }}>
+															<ScrollView>
+																<Text>{item.descrbtion}</Text>
+															</ScrollView>
+														</View>
 
-													<Text style={{ color: 'red' }}>{item.cost}$</Text>
+														<Text style={{ color: 'red' }}>{item.cost}$</Text>
+													</View>
 												</View>
-												<View style={{ flexDirection: 'row' }}>
-													<AntDesign
-														onPress={() =>
-															Alert.alert(
-																'Warning',
-																'are you shure you want to delete this item',
-																[
-																	{
-																		text: 'Cancel',
-																		onPress: () => console.warn('Cancel Pressed'),
-																		style: 'cancel'
-																	},
-																	{
-																		text: 'Delete',
-																		onPress: () => this.delete(item.itemId)
-																	}
-																],
-																{ cancelable: false }
-															)}
-														name="delete"
-														size={32}
-														color="green"
-													/>
-													<MaterialCommunityIcons
-														name="information-outline"
-														size={32}
-														color="green"
-														onPress={() => {
-															fetch(`http://192.168.0.14:3000/clicked?id=${item.itemId}`)
-																.then((data) => data.json())
-																.then((data) =>
-																	alert(`you have ${data.clicked} watches`)
-																);
-														}}
-													/>
-												</View>
-											</View>
+											</TouchableOpacity>
 										);
 									}
 								})}

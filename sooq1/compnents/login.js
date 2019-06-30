@@ -9,7 +9,7 @@ export default class Login extends Component {
 	}
 
 	test() {
-		console.warn('clicked', this.state.email, this.state.password);
+		// console.warn('clicked', this.state.email, this.state.password);
 		return fetch(`http://192.168.0.14:3000/signin?email=${this.state.email}&&password=${this.state.password}`, {
 			method: 'GET',
 			headers: {
@@ -23,7 +23,7 @@ export default class Login extends Component {
 					token: data.token,
 					id: data.data.id
 				});
-				console.warn(data.data.id);
+				// console.warn(data.data.id);
 				var id = data.data.id;
 				const saveUserId = async (userId) => {
 					try {

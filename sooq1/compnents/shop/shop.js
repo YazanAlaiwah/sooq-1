@@ -44,7 +44,7 @@ export default class Shop extends React.Component {
 						>
 							<TouchableOpacity
 								style={{ flexDirection: 'row', flex: 1 }}
-								onPress={() => this.shoppage.bind(this, item.id)}
+								onPress={Actions.shoppage({ shopId: item.id })}
 							>
 								<Image
 									source={{ uri: item.img }}
