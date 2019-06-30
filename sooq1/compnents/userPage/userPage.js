@@ -30,7 +30,6 @@ export default class UserPage extends Component {
 					fetch(`http://192.168.0.14:3000/seeUserMerc?id=${value}`)
 						.then((data) => data.json())
 						.then((data) => {
-							// console≥\.warn(data);
 							this.setState({ Merc: data });
 						});
 			})
