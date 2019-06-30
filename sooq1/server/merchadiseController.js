@@ -123,16 +123,13 @@ exports.imageitem = (req, res) => {
 	}).then((images) => res.send(images));
 };
 exports.itempage = (req, res) => {
-	console.log('hello');
 	Item.findOne({
-		attributes: [ 'title', 'descrbtion', 'cost' ],
 		where: {
 			id: req.query.id
 		},
 		include: [
 			{
-				model: User,
-				attributes: [ 'name', 'location', 'img', 'phonenumber' ]
+				model: User
 			}
 		]
 	}).then((data) => res.send(data));
@@ -173,16 +170,12 @@ exports.itemClicked = (req, res) => {
 	});
 };
 exports.watched = (req, res) => {
-	Item_Watched.findAll({
-		where: {
-			userId: req.query.id
-		},
-		include: [
-			{
-				model: Item
-			}
-		]
-	}).then((data) => res.send(data));
+	sequelize
+		.query(
+			`SELECT item_watcheds.*, items.*,images.img FROM item_watcheds LEFT JOIN items ON item_watcheds.itemId = items.id LEFT JOIN images ON item_watcheds.itemId = images.itemId WHERE item_watcheds.userId=${req
+				.query.id};`
+		)
+		.then((data) => res.send(data));
 };
 exports.clicked = (req, res) => {
 	Item.findOne({

@@ -1,20 +1,26 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, Button, Image, TextInput, KeyboardAvoidingView } from 'react-native';
+import {
+	StyleSheet,
+	Text,
+	View,
+	ScrollView,
+	Button,
+	Image,
+	TextInput,
+	KeyboardAvoidingView,
+	TouchableOpacity
+} from 'react-native';
 import Header from '../header';
 import Footer from '../footer';
 import { SliderBox } from 'react-native-image-slider-box';
-// import console = require('console');
-
-// import console = require('console');
-// import console = re/quire('console');
-// import console = require('console');
-// import console = require('console');
+import { Actions } from 'react-native-router-flux';
 
 var arr = [];
 export default class ItemPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			userId: '',
 			img: [],
 			title: '',
 			descrbtion: '',
@@ -41,7 +47,9 @@ export default class ItemPage extends React.Component {
 		});
 
 		fetch(`http://192.168.0.14:3000/itempage?id=${this.props.id}`).then((info) => info.json()).then((info) => {
+			// return console.warn(info);
 			this.setState({
+				userId: info.user.id,
 				title: info.title,
 				descrbtion: info.descrbtion,
 				cost: info.cost,
@@ -84,11 +92,9 @@ export default class ItemPage extends React.Component {
 			text: ''
 		});
 	}
-
 	render() {
 		return (
 			<View>
-				{/* <KeyboardAvoidingView> */}
 				<ScrollView>
 					<Header />
 					<SliderBox images={this.state.img} />
@@ -112,13 +118,12 @@ export default class ItemPage extends React.Component {
 					</View>
 					<View style={{ height: 5 }} />
 					<View style={{ flex: 1, flexDirection: 'row' }} />
-					{/* <View style={{ width: 90 }} /> */}
 					<View>
 						<Text>descrbtion:</Text>
 						<Text style={{ fontSize: 15 }}>{this.state.descrbtion}</Text>
 						<View style={{ height: 15 }} />
 					</View>
-					<View
+					<TouchableOpacity
 						style={{
 							flex: 1,
 							flexDirection: 'row',
@@ -129,18 +134,32 @@ export default class ItemPage extends React.Component {
 							borderTopRightRadius: 10,
 							borderBottomRightRadius: 10
 						}}
+						onPress={() => Actions.userinfo({ id: this.state.userId })}
 					>
-						<Image source={{ uri: this.state.userImg }} style={{ width: 100, height: 100 }} />
-						<View style={{ width: 10 }} />
-						<View style={{ flex: 1, flexDirection: 'column' }}>
-							<View style={{ height: 3 }} />
-							<Text>{this.state.name}</Text>
-							<View style={{ height: 5 }} />
-							<Text>{this.state.phonenumber}</Text>
-							<View style={{ height: 5 }} />
-							<Text>{this.state.location}</Text>
+						<View
+							style={{
+								flex: 1,
+								flexDirection: 'row',
+								borderColor: 'grey',
+								borderWidth: 1,
+								width: 300,
+								// borderRadius: 10,
+								borderTopRightRadius: 10,
+								borderBottomRightRadius: 10
+							}}
+						>
+							<Image source={{ uri: this.state.userImg }} style={{ width: 100, height: 100 }} />
+							<View style={{ width: 10 }} />
+							<View style={{ flex: 1, flexDirection: 'column' }}>
+								<View style={{ height: 3 }} />
+								<Text>{this.state.name}</Text>
+								<View style={{ height: 5 }} />
+								<Text>{this.state.phonenumber}</Text>
+								<View style={{ height: 5 }} />
+								<Text>{this.state.location}</Text>
+							</View>
 						</View>
-					</View>
+					</TouchableOpacity>
 					<View style={{ height: 20 }} />
 					<Text>commint:</Text>
 					<View style={{ width: '90%', borderColor: 'grey', borderWidth: 1, borderRadius: 10 }}>
@@ -156,7 +175,6 @@ export default class ItemPage extends React.Component {
 						<Button color="grey" title="send" onPress={this.test.bind(this)} />
 					</View>
 				</ScrollView>
-				{/* </KeyboardAvoidingView> */}
 				<Footer />
 				<View style={{ height: 30 }} />
 			</View>

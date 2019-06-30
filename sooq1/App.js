@@ -14,6 +14,7 @@ import AddShop from './compnents/shop/addShop';
 import UserShop from './compnents/shop/userShop';
 import AddItemShop from './compnents/shop/addItemShop';
 import ShopPage from './compnents/shop/shopPage';
+import UserInfo from './compnents/watched/userinfo';
 export default class App extends React.Component {
 	constructor(props) {
 		super(props);
@@ -23,6 +24,7 @@ export default class App extends React.Component {
 		return (
 			<Router>
 				<Scene key="root">
+					<Scene key="userinfo" component={UserInfo} hideNavBar={true} />
 					<Scene key="shoppage" component={ShopPage} hideNavBar={true} />
 					<Scene key="additemshop" component={AddItemShop} hideNavBar={true} />
 					<Scene key="usershop" component={UserShop} hideNavBar={true} />
