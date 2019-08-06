@@ -1,21 +1,8 @@
 const { sequelize } = require('./database/dp');
-const {
-	User,
-	Item,
-	Category,
-	Frinde,
-	Chat,
-	Image,
-	Item_Watched,
-	Comment,
-	Shop,
-	Watched
-} = require('./database/module');
-
+const { User, Item, Category, Image, Item_Watched, Comment, Shop } = require('./database/module');
+// this part to add items in the database
 exports.addMerchandise = (req, res) => {
-	// console.log(req.body);
 	const { img, descrbtion, title, cost, userId } = req.body;
-	console.log(req.body);
 	Category.findOne({
 		where: {
 			type: req.body.type,
@@ -23,7 +10,6 @@ exports.addMerchandise = (req, res) => {
 		},
 		attributes: [ 'id' ]
 	}).then((idcc) => {
-		console.log(idcc.dataValues);
 		Item.create({
 			descrbtion: descrbtion,
 			title: title,
@@ -32,7 +18,6 @@ exports.addMerchandise = (req, res) => {
 			categoryId: idcc.dataValues.id,
 			clicked: 0
 		}).then((data) => {
-			console.log(data);
 			Image.create({
 				img: img,
 				itemId: data.dataValues.id
@@ -42,9 +27,8 @@ exports.addMerchandise = (req, res) => {
 		});
 	});
 };
-
+// this part to remove items from the datavbase
 exports.removeMerchandise = (req, res) => {
-	console.log(req.body);
 	Image.destroy({
 		where: {
 			itemId: req.body.id
@@ -59,20 +43,19 @@ exports.removeMerchandise = (req, res) => {
 		});
 	});
 };
+// this part to show the supCategory from the database
 exports.seeSpaceficCategory = (req, res) => {
-	// console.log(req.query);
 	Category.findAll({
 		attributes: [ 'id', 'specfic', 'img' ],
 		where: {
 			type: req.query.type
 		}
 	}).then((data) => {
-		// console.log(data);
 		res.send(data);
 	});
 };
+//this part to show the supCategory from the database
 exports.seeSpicfic = (req, res) => {
-	console.log(req.query);
 	Category.findAll({
 		attributes: [ 'specfic' ],
 		where: {
@@ -82,8 +65,8 @@ exports.seeSpicfic = (req, res) => {
 		res.send(data);
 	});
 };
+// this part to show the items from the database
 exports.seeListMerchandise = (req, res) => {
-	// console.log(req.query);
 	Image.findAll({
 		attributes: [ 'img' ],
 		include: [
@@ -99,6 +82,7 @@ exports.seeListMerchandise = (req, res) => {
 		res.send(data);
 	});
 };
+// this part to have user info from the database
 exports.seeUserInfo = (req, res) => {
 	User.findOne({
 		attributes: [ 'name', 'img', 'location', 'createdAt' ],
@@ -109,6 +93,7 @@ exports.seeUserInfo = (req, res) => {
 		res.send(data);
 	});
 };
+// this part to show the items for the user from the database
 exports.seeUserMerc = (req, res) => {
 	sequelize
 		.query(`select * from items join images where userId = ${req.query.id} and itemId = items.id`)
@@ -122,6 +107,7 @@ exports.imageitem = (req, res) => {
 		}
 	}).then((images) => res.send(images));
 };
+//this part to show the item info and the user info from the database
 exports.itempage = (req, res) => {
 	Item.findOne({
 		where: {
@@ -134,6 +120,7 @@ exports.itempage = (req, res) => {
 		]
 	}).then((data) => res.send(data));
 };
+// this part to show the comments for the item from the database
 exports.itemcommint = (req, res) => {
 	Comment.findAll({
 		attributes: [ 'comment' ],
@@ -142,14 +129,15 @@ exports.itemcommint = (req, res) => {
 		}
 	}).then((commint) => res.send(commint));
 };
+// this part to save the comment in the database
 exports.addcommint = (req, res) => {
 	Comment.create({
 		comment: req.body.text,
 		itemId: req.body.id
 	});
 };
+// this part to save how many clicked for the item
 exports.itemClicked = (req, res) => {
-	console.log(req.body);
 	Item.update({ clicked: sequelize.literal('clicked + 1') }, { where: { id: req.body.itemId } });
 	Item_Watched.findOne({
 		where: {
@@ -158,17 +146,16 @@ exports.itemClicked = (req, res) => {
 		}
 	}).then((data) => {
 		if (!data) {
-			console.log('hello');
 			Item_Watched.create({
 				itemId: req.body.itemId,
 				userId: req.body.userId
 			}).catch(function(err) {
-				// print the error details
 				console.log(err, 'request.body.email');
 			});
 		}
 	});
 };
+// this part to show for the user what items he watched
 exports.watched = (req, res) => {
 	sequelize
 		.query(
@@ -177,6 +164,7 @@ exports.watched = (req, res) => {
 		)
 		.then((data) => res.send(data));
 };
+// this part to show how many the item was clicked
 exports.clicked = (req, res) => {
 	Item.findOne({
 		attributes: [ 'clicked' ],
@@ -185,8 +173,8 @@ exports.clicked = (req, res) => {
 		}
 	}).then((data) => res.send(data));
 };
+// this part to save shops in the database
 exports.addshop = (req, res) => {
-	console.log(req.body);
 	Shop.create({
 		img: req.body.data.img,
 		type: req.body.data.specfic,
@@ -204,6 +192,7 @@ exports.addshop = (req, res) => {
 		name: req.body.data.name
 	});
 };
+// this part to show the shop info for the users
 exports.shopinfo = (req, res) => {
 	Shop.findOne({
 		where: {
@@ -211,6 +200,7 @@ exports.shopinfo = (req, res) => {
 		}
 	}).then((data) => res.send(data));
 };
+// this part to save the item of the shops in the database
 exports.additemshop = (req, res) => {
 	console.log(req.body);
 	Shop.findOne({
@@ -232,20 +222,19 @@ exports.additemshop = (req, res) => {
 				categoryId: idcc.dataValues.id,
 				clicked: 0
 			}).then((data) => {
-				console.log(data);
 				Image.create({
 					img: req.body.img,
 					itemId: data.dataValues.id
-				}).then((data) => {
-					console.log(data);
-				});
+				}).then((data) => {});
 			});
 		});
 	});
 };
+// this part to show the shops for the users
 exports.showshops = (req, res) => {
 	Shop.findAll({}).then((data) => res.send(data));
 };
+// this part to show the shop info from the database
 exports.showshoppage = (req, res) => {
 	Shop.findOne({
 		where: {
@@ -253,12 +242,14 @@ exports.showshoppage = (req, res) => {
 		}
 	}).then((data) => res.send(data));
 };
+// this part to save the comments of the shops in the database
 exports.addcommintshop = (req, res) => {
 	Comment.create({
 		comment: req.body.text,
 		shopId: req.body.id
 	});
 };
+// this part to show the shop comments from teh database
 exports.shopcommint = (req, res) => {
 	Comment.findAll({
 		attributes: [ 'comment' ],
@@ -267,8 +258,8 @@ exports.shopcommint = (req, res) => {
 		}
 	}).then((commint) => res.send(commint));
 };
+// this part to show the shop items from the database
 exports.seeShopMerc = (req, res) => {
-	console.log('hello datajfdkjjk');
 	sequelize
 		.query(`select * from items join images where shopId = ${req.query.id} and itemId = items.id`)
 		.then((data) => res.send(data[0]));
