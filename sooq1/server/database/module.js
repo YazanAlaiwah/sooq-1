@@ -15,7 +15,6 @@ const User = sequelize.define('user', {
 		defaultValue: Sequelize.NOW
 	},
 	updatedAt: {
-		// field: 'updated_at',
 		type: Sequelize.DATE,
 		defaultValue: Sequelize.NOW
 	}
@@ -33,7 +32,6 @@ const Item = sequelize.define('item', {
 		defaultValue: Sequelize.NOW
 	},
 	updatedAt: {
-		// field: 'updated_at',
 		type: Sequelize.DATE,
 		defaultValue: Sequelize.NOW
 	}
@@ -49,7 +47,6 @@ const Category = sequelize.define('category', {
 		defaultValue: Sequelize.NOW
 	},
 	updatedAt: {
-		// field: 'updated_at',
 		type: Sequelize.DATE,
 		defaultValue: Sequelize.NOW
 	}
@@ -63,7 +60,6 @@ const Comment = sequelize.define('comment', {
 		defaultValue: Sequelize.NOW
 	},
 	updatedAt: {
-		// field: 'updated_at',
 		type: Sequelize.DATE,
 		defaultValue: Sequelize.NOW
 	}
@@ -102,7 +98,6 @@ const Watched = sequelize.define('watched', {
 		defaultValue: Sequelize.NOW
 	},
 	updatedAt: {
-		// field: 'updated_at',
 		type: Sequelize.DATE,
 		defaultValue: Sequelize.NOW
 	}
@@ -116,7 +111,6 @@ const Image = sequelize.define('images', {
 		defaultValue: Sequelize.NOW
 	},
 	updatedAt: {
-		// field: 'updated_at',
 		type: Sequelize.DATE,
 		defaultValue: Sequelize.NOW
 	}
@@ -130,7 +124,6 @@ const Chat = sequelize.define('chat', {
 		defaultValue: Sequelize.NOW
 	},
 	updatedAt: {
-		// field: 'updated_at',
 		type: Sequelize.DATE,
 		defaultValue: Sequelize.NOW
 	}
@@ -143,7 +136,6 @@ const Frinde = sequelize.define('frinds', {
 		defaultValue: Sequelize.NOW
 	},
 	updatedAt: {
-		// field: 'updated_at',
 		type: Sequelize.DATE,
 		defaultValue: Sequelize.NOW
 	}
