@@ -1,20 +1,10 @@
 import React from 'react';
-import {
-	StyleSheet,
-	Text,
-	View,
-	ScrollView,
-	Button,
-	Image,
-	TextInput,
-	KeyboardAvoidingView,
-	TouchableOpacity
-} from 'react-native';
+import { Text, View, ScrollView, Button, Image, TextInput, TouchableOpacity } from 'react-native';
 import Header from '../header';
 import Footer from '../footer';
 import { SliderBox } from 'react-native-image-slider-box';
 import { Actions } from 'react-native-router-flux';
-
+//this var to save the images of the item
 var arr = [];
 export default class ItemPage extends React.Component {
 	constructor(props) {
@@ -35,19 +25,17 @@ export default class ItemPage extends React.Component {
 		};
 	}
 	componentWillMount() {
+		//this part to have the images before render
 		fetch(`http://192.168.0.14:3000/imageitem?id=${this.props.id}`).then((images) => images.json()).then((imgs) => {
-			// console.warn(imgs);
 			for (var i = 0; i < imgs.length; i++) {
-				// var obj = { url: imgs[i].img };
 				arr.push(imgs[i].img);
 			}
 			this.setState({
 				img: arr
 			});
 		});
-
+		// this part to have the item info before render
 		fetch(`http://192.168.0.14:3000/itempage?id=${this.props.id}`).then((info) => info.json()).then((info) => {
-			// return console.warn(info);
 			this.setState({
 				userId: info.user.id,
 				title: info.title,
@@ -60,7 +48,7 @@ export default class ItemPage extends React.Component {
 				createdAt: info.createdAt
 			});
 		});
-
+		//this part to have the comment of the item before render
 		fetch(`http://192.168.0.14:3000/itemcommint?id=${this.props.id}`)
 			.then((commint) => commint.json())
 			.then((commint) => {
@@ -73,6 +61,7 @@ export default class ItemPage extends React.Component {
 				});
 			});
 	}
+	//this part to write comment and save it in the database
 	test() {
 		fetch('http://192.168.0.14:3000/addcommint', {
 			method: 'POST',
@@ -85,8 +74,6 @@ export default class ItemPage extends React.Component {
 				id: this.props.id
 			})
 		});
-		// .then((res) => res.json())
-		// .then((res) => console.warn(res));
 		this.setState({
 			commint: [ ...this.state.commint, this.state.text ],
 			text: ''
