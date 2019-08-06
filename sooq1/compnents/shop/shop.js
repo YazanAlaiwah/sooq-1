@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from '../header';
-import Footer from '../footer';
 import { Actions } from 'react-native-router-flux';
 import { View, Text, Button, TouchableOpacity, Image } from 'react-native';
 
@@ -11,12 +10,13 @@ export default class Shop extends React.Component {
 			shops: []
 		};
 	}
+	//this part to navigate the user to shop page when he click on it
 	shoppage(id) {
-		// console.warn(this.state.shops);
 		Actions.shoppage({ shopId: id });
 	}
 
 	componentWillMount() {
+		// this part to have all the shops before render
 		fetch(`http://192.168.0.14:3000/showshops`)
 			.then((data) => data.json())
 			.then((data) => this.setState({ shops: data }));

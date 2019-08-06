@@ -1,9 +1,7 @@
 import React from 'react';
 import Header from '../header';
-import Footer from '../footer';
 import RadioForm from 'react-native-simple-radio-button';
 import { ImagePicker } from 'expo';
-import { Actions } from 'react-native-router-flux';
 import { dbh } from '../../server/database/apikeycnfig';
 import {
 	View,
@@ -18,7 +16,6 @@ import {
 	TextInput,
 	AsyncStorage
 } from 'react-native';
-// import console = require('console');
 
 export default class AddShop extends React.Component {
 	constructor(props) {
@@ -51,20 +48,20 @@ export default class AddShop extends React.Component {
 			friday: ''
 		};
 	}
+	/// this part to have days of work from days input
 	onChange(name, text) {
-		// console.warn(this.state.saturday, this.state.descrbtion);
 		this.setState({
 			[name]: text
 		});
 	}
+	//this part to have the supCategory of the shop
 	supCategory(v) {
-		// console.warn(v);
 		this.setState({
 			specfic: v
 		});
 	}
+	//this part to have the type of the shop
 	select(itemValue) {
-		// console.warn('gitu', this.state.showSpecfic);
 		this.setState({
 			type: itemValue,
 			showSpecfic: true
@@ -79,8 +76,8 @@ export default class AddShop extends React.Component {
 			});
 		});
 	}
+	// this part to save the image of the shop from the camera or from the gallary
 	alertImage() {
-		// console.warn('hello');
 		Alert.alert(
 			'MobiShop',
 			'from where you want the image',
@@ -114,6 +111,7 @@ export default class AddShop extends React.Component {
 			this.uploudImage(result.uri, 'test-image');
 		}
 	};
+	// this part to save the image in the database
 	uploudImage = async (uri, imageName) => {
 		const response = await fetch(uri);
 		const blob = await response.blob();
@@ -135,6 +133,7 @@ export default class AddShop extends React.Component {
 				},
 				() => {
 					dbh.ref('items').child(blob._data.name).getDownloadURL().then((imgUrl) => {
+						// this part to save the image url in the state
 						this.setState({
 							img: imgUrl
 						});
@@ -143,6 +142,7 @@ export default class AddShop extends React.Component {
 			);
 		}
 	};
+	// this part to save all the info of the shop in the database
 	done() {
 		AsyncStorage.getItem('userId')
 			.then((value) => {

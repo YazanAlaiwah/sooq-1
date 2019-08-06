@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button, Alert, Image, Picker, ScrollView, TextInput } from 'react-native';
-import { Actions } from 'react-native-router-flux';
+import { StyleSheet, View, Button, Image, ScrollView, TextInput } from 'react-native';
 import Header from '../header';
 import { ImagePicker } from 'expo';
 import { dbh } from '../../server/database/apikeycnfig';
@@ -25,41 +24,42 @@ export default class AddItemShop extends Component {
 	}
 
 	componentWillMount() {
+		// this part to have shop id before render
 		this.setState({
 			shopId: this.props.shopId
 		});
 	}
+	// this part to select the type of the item
 	select(itemValue) {
 		this.setState({
 			type: itemValue,
 			showSpecfic: !this.state.showSpecfic
 		});
-		// console.warn(itemValue);
 		fetch(`http://192.168.0.14:3000/seeSpicfic?type=${itemValue}`).then((data) => data.json()).then((data) => {
 			var arr = [];
 			for (let i = 0; i < data.length; i++) {
 				arr.push({ label: data[i].specfic, value: data[i].specfic });
 			}
-			// console.warn(data);
-			// console.warn(this.state.specfic);
 			this.setState({
 				specficArr: arr
 			});
 		});
 	}
+	// this part to open the camera for the images
 	onChooseImageUploud = async () => {
 		let result = await ImagePicker.launchCameraAsync();
 		if (!result.cancelled) {
 			this.uploudImage(result.uri, 'test-image');
 		}
 	};
+	// this part to open the gallary for the images
 	onChooseImageUploud2 = async () => {
 		let result = await ImagePicker.launchImageLibraryAsync();
 		if (!result.cancelled) {
 			this.uploudImage(result.uri, 'test-image');
 		}
 	};
-
+	// this part to save the image in the database
 	uploudImage = async (uri, imageName) => {
 		const response = await fetch(uri);
 		const blob = await response.blob();
@@ -71,6 +71,7 @@ export default class AddItemShop extends Component {
 				(error) => {},
 				() => {
 					dbh.ref('items').child(blob._data.name).getDownloadURL().then((imgUrl) => {
+						// this part to save the url of the image in the state
 						this.setState({
 							img: imgUrl
 						});
@@ -79,7 +80,7 @@ export default class AddItemShop extends Component {
 			);
 		}
 	};
-
+	// this part to save the item info in the database
 	done() {
 		fetch('http://192.168.0.14:3000/additemshop', {
 			method: 'POST',
@@ -99,7 +100,6 @@ export default class AddItemShop extends Component {
 					<Header />
 					<View>
 						<View style={{ flex: 1, flexDirection: 'column', alignItems: 'center' }}>
-							{/* <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center' }}> */}
 							<View style={{ height: 300 }}>
 								<Image source={{ uri: this.state.img }} style={{ width: '100%', height: 300 }} />
 							</View>
@@ -194,12 +194,3 @@ export default class AddItemShop extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center'
-	}
-});

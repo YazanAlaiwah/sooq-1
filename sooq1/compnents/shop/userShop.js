@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
-import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
-import { StyleSheet, Text, View, TextInput, Button, AsyncStorage, Image } from 'react-native';
+import { StyleSheet, Text, View, Button, AsyncStorage, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Header from '../header';
-import Footer from '../footer';
 import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
-import AddItemShop from './addItemShop';
-// import console = require('console');
 let id;
 export default class UserShop extends Component {
 	constructor(props) {
@@ -31,6 +27,7 @@ export default class UserShop extends Component {
 	}
 
 	componentWillMount() {
+		// this part to show for the user his shop data
 		AsyncStorage.getItem('userId')
 			.then((value) => {
 				fetch(`http://192.168.0.14:3000/shopinfo?id=${value}`).then((data) => data.json()).then((data) => {
@@ -55,6 +52,7 @@ export default class UserShop extends Component {
 			.catch((error) => {
 				console.warn(error);
 			});
+		// this part to have the shop items
 		fetch(`http://192.168.0.14:3000/seeShopMerc?id=${this.state.shopId}`)
 			.then((data) => data.json())
 			.then((data) => {
@@ -90,12 +88,9 @@ export default class UserShop extends Component {
 				<Button title="add item" onPress={() => Actions.additemshop({ shopId: this.state.shopId })} />
 				<View style={{ height: 300, width: '90%' }} />
 				{this.state.data.map((item) => {
-					// console.warn('hellosdkjfl', item.title);
 					if (id === item.itemId) {
-						// console.warn('baby');
 						return;
 					} else {
-						// console.warn('no');
 						id = item.itemId;
 						return (
 							<View
