@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ImageBackground } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 var arr = require('../../data/sections.js');
 
@@ -8,11 +8,9 @@ export default class Sections extends Component {
 		super(props);
 		this.state = { email: 'Ss', password: '123' };
 	}
-
+	//this part to have the supcategory and send it to subCategory component when the user click in the secction
 	cato(e) {
-		// console.warn(e);
 		fetch(`http://192.168.0.14:3000/spaceficCategory?type=${e}`).then((data) => data.json()).then((data) => {
-			// console.warn(data);
 			Actions.spacficCategory({ text: data });
 		});
 	}
@@ -39,15 +37,6 @@ export default class Sections extends Component {
 											paddingRight: 3
 										}}
 									>
-										{/* <Image
-										source={{
-											uri: item.uri
-										}}
-										style={styles.photo}
-									/>
-									<View style={styles.container_text}>
-										<Text style={styles.title}>{item.section}</Text>
-									</View> */}
 										<ImageBackground
 											imageStyle={{ borderRadius: 10 }}
 											source={{ uri: item.uri }}
@@ -91,15 +80,6 @@ export default class Sections extends Component {
 											paddingRight: 5
 										}}
 									>
-										{/* <Image
-										source={{
-											uri: item.uri
-										}}
-										style={styles.photo}
-									/>
-									<View style={styles.container_text}>
-										<Text style={styles.title}>{item.section}</Text>
-									</View> */}
 										<ImageBackground
 											imageStyle={{ borderRadius: 10 }}
 											source={{ uri: item.uri }}
@@ -136,19 +116,7 @@ const styles = StyleSheet.create({
 		alignItems: 'stretch',
 		flex: 1
 	},
-	// container1: {
-	// 	// marginTop: 100,
-	// 	// flex: 1,
-	// 	// flexDirection: 'row',
 
-	// 	// marginLeft: 16,
-	// 	// marginRight: 16,
-	// 	// marginTop: 8,
-	// 	// marginBottom: 8,
-	// 	borderRadius: 20
-
-	// 	// elevation: 2
-	// },
 	title: {
 		fontSize: 35,
 		color: '#000',
@@ -164,15 +132,5 @@ const styles = StyleSheet.create({
 	photo: {
 		height: 150,
 		width: '100%'
-		// flexDirection: 'row',
-		// flex:1,
-		// borderRadius: 20,
-		// justifyContent: 'flex-start'
 	}
-	// container_map: {
-	// 	// flexDirection: 'row',
-	// 	// flex: 1,
-	// 	borderRadius: 20,
-	// 	backgroundColor: '#FEFBF1'
-	// }
 });
