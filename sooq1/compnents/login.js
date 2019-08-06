@@ -5,11 +5,11 @@ import { Actions } from 'react-native-router-flux';
 export default class Login extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { email: 'Ss', password: '123', token: '', id: '' };
+		this.state = { email: '', password: '', token: '', id: '' };
 	}
 
 	test() {
-		// console.warn('clicked', this.state.email, this.state.password);
+		//will check from the user email and password
 		return fetch(`http://192.168.0.14:3000/signin?email=${this.state.email}&&password=${this.state.password}`, {
 			method: 'GET',
 			headers: {
@@ -23,8 +23,7 @@ export default class Login extends Component {
 					token: data.token,
 					id: data.data.id
 				});
-				// console.warn(data.data.id);
-				var id = data.data.id;
+				//will save the user id and the token in the Storage if the user email and password correct
 				const saveUserId = async (userId) => {
 					try {
 						AsyncStorage.setItem('userId', this.state.id.toString());
@@ -32,35 +31,32 @@ export default class Login extends Component {
 					} catch (error) {
 						console.log(error.message);
 					}
+					//will navigate you to main page
 					Actions.home();
 				};
 				saveUserId();
 			});
 	}
 
-	test1() {
-		AsyncStorage.getItem('token').then((value) => {}).catch((error) => {
-			console.warn(error);
-		});
-	}
-
 	render() {
 		return (
 			<View style={styles.container}>
+				<Text style={{ fontSize: 40, color: 'grey' }}>Login</Text>
 				<View style={styles.containerInfo}>
 					<Text>email</Text>
 					<TextInput
-						style={{ height: 40, width: 200, borderColor: 'gray', borderWidth: 1 }}
+						style={{ height: 40, width: 210, borderColor: 'gray', borderWidth: 1, borderRadius: 10 }}
 						onChangeText={(email) => this.setState({ email })}
 						placeholder="EX.email@gmail.com"
 					/>
 					<Text>password</Text>
 					<TextInput
-						style={{ height: 40, width: 200, borderColor: 'gray', borderWidth: 1 }}
+						style={{ height: 40, width: 210, borderColor: 'gray', borderWidth: 1, borderRadius: 10 }}
 						onChangeText={(password) => this.setState({ password })}
 						placeholder="********"
 					/>
-					<Text style={{ color: 'blue' }} onPress={() => Actions.signup()}>
+					{/* when you click the text will navigate you to signup page */}
+					<Text style={{ color: 'blue', fontSize: 15 }} onPress={() => Actions.signup()}>
 						signup
 					</Text>
 					<Button onPress={this.test.bind(this)} title="login" />
@@ -73,11 +69,15 @@ export default class Login extends Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#fff',
+		backgroundColor: '#ffffff',
 		alignItems: 'center',
 		justifyContent: 'center'
 	},
 	containerInfo: {
-		backgroundColor: '#FDFEE8'
+		backgroundColor: '#DCDCDC',
+		borderColor: 'grey',
+		borderWidth: 1,
+		borderRadius: 10,
+		padding: 10
 	}
 });

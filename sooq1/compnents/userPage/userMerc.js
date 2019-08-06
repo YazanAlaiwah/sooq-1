@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, ScrollView, Image, Alert, Button } from 'react-native';
 let id;
 import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
-// import { json } from 'sequelize/types';
 export default class UserMerc extends Component {
 	constructor(props) {
 		super(props);
@@ -27,7 +26,6 @@ export default class UserMerc extends Component {
 				style={{
 					flex: 1,
 					flexDirection: 'column',
-					// alignItems: 'center',
 					justifyContent: 'space-between'
 				}}
 			>

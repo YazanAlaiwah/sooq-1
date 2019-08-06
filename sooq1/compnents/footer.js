@@ -1,16 +1,15 @@
-import { Router, Scene } from 'react-native-router-flux';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
-// import console = require('console');
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function Footer() {
+	//this part to navigate you to the main page
 	homePage = () => {
 		Actions.home();
 	};
+	//this part navigate you to add item page
 	addItem = () => {
 		Actions.additem();
 	};
@@ -28,6 +27,7 @@ export default function Footer() {
 					</View>
 
 					<View style={{ flexDirection: 'column', justifyContent: 'flex-end' }}>
+						{/* when you click here its will navigate you to shops page */}
 						<MaterialCommunityIcons onPress={() => Actions.shop()} name="store" size={50} color="white" />
 					</View>
 

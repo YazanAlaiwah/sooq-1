@@ -8,43 +8,36 @@ import { Actions } from 'react-native-router-flux';
 
 export default function Header() {
 	_menu = null;
-
+	// this part to show the header menu show and hide
 	setMenuRef = (ref) => {
-		// console.warn(ref);
 		this._menu = ref;
 	};
-
+	//this part to navigate you to the profile
 	hideMenu = () => {
-		// console.warn(arr);
 		this._menu.hide();
-		// this._menu = ref;
 		Actions.userpage();
 	};
+	//this part to navigate you to the Watched page
 	hideMenu1 = () => {
-		// console.warn(arr);
 		this._menu.hide();
-		// this._menu = ref;
 		Actions.watched();
 	};
+	//this part to navigate you to the add Iteam page
 	hideMenu2 = () => {
-		// console.warn(arr);
 		this._menu.hide();
-		// this._menu = ref;
 		Actions.additem();
 	};
+	//this part to navigate you to the user shop
 	hideMenu3 = () => {
-		// console.warn(arr);
 		this._menu.hide();
-		// this._menu = ref;
 		Actions.usershop();
 	};
+	//this part to logout
 	hideMenu4 = () => {
-		// console.warn(arr);
 		this._menu.hide();
-		// this._menu = ref;
 		Actions.login();
 	};
-
+	// this part to show the header menu show and hide
 	showMenu = () => {
 		this._menu.show();
 	};
@@ -59,7 +52,7 @@ export default function Header() {
 					}}
 				>
 					<View style={{ flexDirection: 'column', justifyContent: 'flex-end' }}>
-						<Text style={{ color: '#FEFEFE', fontSize: 40, fontFamily: 'serif' }}>Mobishop</Text>
+						<Text style={{ color: '#FEFEFE', fontSize: 40, fontFamily: 'serif' }}>SOOQ</Text>
 					</View>
 					<View style={{ flexDirection: 'column', justifyContent: 'flex-end' }}>
 						<Menu

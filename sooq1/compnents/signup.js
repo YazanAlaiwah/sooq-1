@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, AsyncStorage } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-var t = require('tcomb-form-native');
 
 export default class Signup extends Component {
 	constructor(props) {
@@ -20,16 +19,14 @@ export default class Signup extends Component {
 			body: JSON.stringify(this.state)
 		})
 			.then((data) => {
-				// console.warn(data);
 				return data.json();
 			})
 			.then((data) => {
-				// console.log('hello')
 				console.warn(data);
 			})
 			.catch(function(error) {
 				console.warn('There has been a problem with your fetch operation: ' + error.message);
-				// ADD THIS THROW error
+
 				throw error;
 			});
 	}
@@ -37,6 +34,7 @@ export default class Signup extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
+				<Text style={{ fontSize: 40, color: 'grey' }}>Signup</Text>
 				<View style={styles.containerInfo}>
 					<Text>email</Text>
 					<TextInput
@@ -87,6 +85,10 @@ const styles = StyleSheet.create({
 		justifyContent: 'center'
 	},
 	containerInfo: {
-		backgroundColor: '#FDFEE8'
+		backgroundColor: '#DCDCDC',
+		borderColor: 'grey',
+		borderWidth: 1,
+		borderRadius: 10,
+		padding: 10
 	}
 });

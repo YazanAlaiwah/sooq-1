@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, AsyncStorage } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-// import console = require('console');
 let id;
 export default class Items extends React.Component {
 	constructor(props) {
@@ -30,10 +29,8 @@ export default class Items extends React.Component {
 	render() {
 		return (
 			<ScrollView>
-				{/* <View style={{ flexDirection: 'row' }}> */}
 				<View style={{ flex: 1, flexDirection: 'column', alignItems: 'center' }}>
 					{this.props.data.map((item, index) => {
-						// console.warn(item.item.descrbtion);
 						if (id === item.item.id) {
 							return;
 						} else {
@@ -60,13 +57,7 @@ export default class Items extends React.Component {
 											source={{ uri: item.img }}
 											style={{ width: '50%', height: 130, borderRadius: 25 }}
 										/>
-										{/* <View
-											style={{
-												flexDirection: 'row',
-												justifyContent: 'center',
-												alignItems: 'center'
-											}}
-                    > */}
+
 										<View style={{ width: 10 }} />
 										<View style={{ flex: 1, flexDirection: 'column' }}>
 											<View>
@@ -77,18 +68,18 @@ export default class Items extends React.Component {
 
 													<Text>{item.item.descrbtion}</Text>
 
-													<Text style={{ color: 'red' }}>{item.item.cost}$</Text>
+													<Text style={{ color: 'red', fontSize: 20 }}>
+														{item.item.cost}$
+													</Text>
 												</View>
 											</View>
 										</View>
-										{/* </View> */}
 									</TouchableOpacity>
 								</View>
 							);
 						}
 					})}
 				</View>
-				{/* </View> */}
 			</ScrollView>
 		);
 	}

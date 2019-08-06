@@ -29,7 +29,7 @@ export default class Category extends Component {
 									alignItems: 'center',
 									flex: 1,
 									borderRadius: 20,
-									backgroundColor: item.img,
+									backgroundColor: '#A9A9A9',
 									height: 80
 								}}
 							>

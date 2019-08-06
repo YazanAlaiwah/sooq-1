@@ -56,7 +56,7 @@ export default class Watched extends React.Component {
 								<TouchableOpacity onPress={this.ItemPage.bind(this, item.id)}>
 									<Image
 										source={{ uri: item.img }}
-										style={{ width: 175, height: 160, borderRadius: 25 }}
+										style={{ width: 370, height: 200, borderRadius: 25 }}
 									/>
 
 									<View style={{ flex: 1, flexDirection: 'column' }}>
@@ -68,14 +68,14 @@ export default class Watched extends React.Component {
 											}}
 										>
 											<View style={{ flex: 1, flexDirection: 'column' }}>
-												<Text style={{ color: 'green', fontSize: 15 }}>Type:</Text>
-												<Text>{item.title}</Text>
+												<Text style={{ color: 'green', fontSize: 18 }}>Type:</Text>
+												<Text style={{ fontSize: 15 }}>{item.title}</Text>
 
-												<Text style={{ color: 'red', fontSize: 15 }}>Descrbtion:</Text>
-												<Text>{item.descrbtion}</Text>
+												<Text style={{ color: 'red', fontSize: 18 }}>Descrbtion:</Text>
+												<Text style={{ fontSize: 15 }}>{item.descrbtion}</Text>
 
-												<Text style={{ color: 'red', fontSize: 15 }}>Cost:</Text>
-												<Text>{item.cost}</Text>
+												<Text style={{ color: 'red', fontSize: 18 }}>Cost:</Text>
+												<Text style={{ fontSize: 15 }}>{item.cost}</Text>
 											</View>
 										</View>
 									</View>
