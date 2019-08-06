@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Picker } from 'react-native';
 import SubCategory from './subCategory';
-// import console = require('console');
 
 export default class Category extends Component {
 	constructor(props) {
@@ -15,6 +14,7 @@ export default class Category extends Component {
 			showSpecfic: true
 		};
 	}
+	//this part to save the type of the item and show the sup catogory from the database
 	select(itemValue) {
 		this.setState({
 			type: itemValue,

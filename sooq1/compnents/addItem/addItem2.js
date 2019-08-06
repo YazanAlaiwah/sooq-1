@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, AsyncStorage, Alert } from 'react-native';
+import { AsyncStorage, Alert } from 'react-native';
 import AddItem from './addItem';
 
 export default class AddItem2 extends Component {
@@ -21,6 +21,7 @@ export default class AddItem2 extends Component {
 	}
 
 	componentWillMount() {
+		//this part to have the user id before the page render
 		AsyncStorage.getItem('userId')
 			.then((value) => {
 				this.setState({
@@ -31,17 +32,19 @@ export default class AddItem2 extends Component {
 				console.warn(error);
 			});
 	}
-
+	//this part save the changes in the input field
 	onChange1(text) {
 		this.setState({
 			descrbtion: text
 		});
 	}
+	//this part save the changes in the input field
 	onChange2(text) {
 		this.setState({
 			title: text
 		});
 	}
+	//this part save the changes in the input field
 	onChange3(text) {
 		this.setState({
 			cost: text
@@ -49,23 +52,22 @@ export default class AddItem2 extends Component {
 	}
 
 	specficArr(arr) {
-		// console.warn(arr);
 		this.setState({
 			specficArr: arr
 		});
 	}
 	supCategory(v) {
-		// console.warn(v);
 		this.setState({
 			specfic: v
 		});
 	}
-
+	//this part to save the new URL image for the user and show it
 	UploudImage(imgUrl) {
 		this.setState({
 			img: imgUrl
 		});
 	}
+	//this part to send all the item info and save it in the database
 	done() {
 		fetch('http://192.168.0.14:3000/addMerc', {
 			method: 'POST',
@@ -78,7 +80,7 @@ export default class AddItem2 extends Component {
 			.then((data) => data.json())
 			.then((data) => Alert.alert(done));
 	}
-
+	//this part to save the new URL image for the user and show it
 	type(va) {
 		this.setState({
 			type: va
@@ -99,12 +101,3 @@ export default class AddItem2 extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center'
-	}
-});

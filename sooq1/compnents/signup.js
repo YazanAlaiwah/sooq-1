@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 export default class Signup extends Component {
@@ -7,9 +7,8 @@ export default class Signup extends Component {
 		super(props);
 		this.state = { email: '', password: '', phonenumber: '', location: '', name: '' };
 	}
-
+	//this part to send the email, password, phonenumber, location, and name of the user to sign up
 	test() {
-		console.warn('clicked', this.state.email, this.state.password);
 		fetch(`http://192.168.0.14:3000/signup`, {
 			method: 'POST',
 			headers: {
@@ -21,12 +20,8 @@ export default class Signup extends Component {
 			.then((data) => {
 				return data.json();
 			})
-			.then((data) => {
-				console.warn(data);
-			})
 			.catch(function(error) {
 				console.warn('There has been a problem with your fetch operation: ' + error.message);
-
 				throw error;
 			});
 	}

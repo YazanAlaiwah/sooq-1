@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Button, ScrollView } from 'react-native';
-import { Actions } from 'react-native-router-flux';
+import { View, Button, ScrollView } from 'react-native';
 import Header from '../header';
 import Footer from '../footer';
 import Category from './category';
@@ -10,7 +9,7 @@ export default class AddItem extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			userId: '1',
+			userId: '',
 			img:
 				'https://firebasestorage.googleapis.com/v0/b/mobishop-ffcff.appspot.com/o/items%2Fqury.png?alt=media&token=a30d14fe-888b-4158-b0d0-473a6f9f7f73',
 			type: 'others',
@@ -27,11 +26,7 @@ export default class AddItem extends Component {
 	onClick() {
 		this.Category.caro();
 	}
-
-	cato(res) {
-		console.warn(res);
-	}
-
+	//this part to send all the item info and save it in the database
 	done() {
 		fetch('http://192.168.0.14:3000/addMerc', {
 			method: 'POST',
@@ -80,12 +75,3 @@ export default class AddItem extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center'
-	}
-});

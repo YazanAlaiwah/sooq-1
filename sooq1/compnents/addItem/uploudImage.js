@@ -11,20 +11,21 @@ export default class UploudImage extends Component {
 				'https://firebasestorage.googleapis.com/v0/b/mobishop-ffcff.appspot.com/o/items%2Fadd.png?alt=media&token=149c9514-d41c-47eb-a775-28f09c46a984'
 		};
 	}
-
+	// this part to open the camera and have an image
 	onChooseImageUploud = async () => {
 		let result = await ImagePicker.launchCameraAsync();
 		if (!result.cancelled) {
 			this.uploudImage(result.uri, 'test-image');
 		}
 	};
+	// this part to open the gallary and have an image
 	onChooseImageUploud2 = async () => {
 		let result = await ImagePicker.launchImageLibraryAsync();
 		if (!result.cancelled) {
 			this.uploudImage(result.uri, 'test-image');
 		}
 	};
-
+	// this part to save the image in the cloud firebase and have url for it
 	uploudImage = async (uri, imageName) => {
 		const response = await fetch(uri);
 		const blob = await response.blob();
@@ -49,6 +50,7 @@ export default class UploudImage extends Component {
 						this.setState({
 							img: imgUrl
 						});
+						// this part to have the url will send it to the state to save it
 						this.props.UploudImage(imgUrl);
 					});
 				}

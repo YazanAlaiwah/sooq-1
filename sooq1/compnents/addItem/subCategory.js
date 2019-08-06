@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import RadioForm from 'react-native-simple-radio-button';
 import { StyleSheet, View, ScrollView } from 'react-native';
-// import console = require('console');
 
 export default class SubCategory extends Component {
 	constructor(props) {
@@ -13,7 +12,7 @@ export default class SubCategory extends Component {
 		};
 	}
 	componentWillReceiveProps() {
-		// console.warn(this.props.data);
+		//this part to have the supcatogary before render
 		this.setState({
 			showSpecfic: this.props.data.showSpecfic,
 			specficArr: this.props.data.specficArr
