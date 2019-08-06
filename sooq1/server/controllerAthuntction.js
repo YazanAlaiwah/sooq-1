@@ -1,13 +1,10 @@
 const { User, Item, Category } = require('./database/module');
 const jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
-
+// this part to signup the users and hash the password
 exports.signup = (req, res) => {
-	console.log('fdsjk');
-	var hashPassword;
 	var salt = bcrypt.genSaltSync(10);
 	var hash = bcrypt.hashSync(req.body.password, salt);
-	console.log('hy');
 	User.create({
 		email: req.body.email,
 		password: hash,
@@ -17,11 +14,10 @@ exports.signup = (req, res) => {
 		img: req.body.img,
 		name: req.body.name
 	}).then((data) => {
-		// console.log(data);
 		res.send(data.dataValues);
 	});
 };
-
+//this part to check from the email and the password and login and have token
 exports.signin = (req, res) => {
 	User.findOne({
 		where: {
@@ -39,8 +35,6 @@ exports.signin = (req, res) => {
 				'secret',
 				{ expiresIn: '1h' }
 			);
-			// res.write(data.statusCode);
-			// res.end();
 			console.log(data);
 			res.send({ data: data, token: token });
 		} else {
