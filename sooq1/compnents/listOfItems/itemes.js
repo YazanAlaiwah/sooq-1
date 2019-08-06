@@ -1,12 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, AsyncStorage } from 'react-native';
+import { Text, View, Image, TouchableOpacity, ScrollView, AsyncStorage } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 let id;
 export default class Items extends React.Component {
 	constructor(props) {
 		super(props);
 	}
-
+	//this part to save who clicked in the item and navigate him to the item page
 	ItemPage(id) {
 		AsyncStorage.getItem('userId')
 			.then((value) => {

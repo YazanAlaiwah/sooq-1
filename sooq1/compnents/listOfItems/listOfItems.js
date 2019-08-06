@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import Header from '../header';
 import Items from './itemes';
 export default class ListOfItems extends React.Component {
