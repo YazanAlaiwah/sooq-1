@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 export default class Category extends Component {
 	constructor(props) {
 		super(props);
 	}
+	// this part to show the supCategory
 	seeList(id) {
 		fetch(`http://192.168.0.14:3000/seeListMerchandise?id=${id}`)
 			.then((data) => data.json())
