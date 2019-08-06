@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, ImageBackground, Image } from 'react-native';
+import { View, ImageBackground, Image } from 'react-native';
 
 export default class UserImage extends Component {
 	constructor(props) {
@@ -30,12 +30,3 @@ export default class UserImage extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center'
-	}
-});

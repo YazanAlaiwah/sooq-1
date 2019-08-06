@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { Text, View } from 'react-native';
 
 export default class UserInfo extends Component {
 	constructor(props) {
@@ -10,11 +10,6 @@ export default class UserInfo extends Component {
 			location: ''
 		};
 	}
-	// componentWillMount() {
-	// 	this.setState({
-	// 		name: this.props.data.name
-	// 	});
-	// }
 
 	render() {
 		return (
@@ -45,12 +40,3 @@ export default class UserInfo extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center'
-	}
-});

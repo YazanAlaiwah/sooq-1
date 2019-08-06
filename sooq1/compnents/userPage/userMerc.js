@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ScrollView, Image, Alert, Button } from 'react-native';
+import { Text, View, ScrollView, Image, Alert } from 'react-native';
 let id;
 import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
 export default class UserMerc extends Component {
@@ -9,7 +9,7 @@ export default class UserMerc extends Component {
 			Merc: []
 		};
 	}
-
+	// this part to delete item from the user items
 	delete(id) {
 		fetch(`http://192.168.0.14:3000/rmMerc`, {
 			method: 'POST',
@@ -17,7 +17,7 @@ export default class UserMerc extends Component {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({ id: id })
-		}).then((data) => console.warn(data.status));
+		});
 	}
 
 	render() {
@@ -104,12 +104,3 @@ export default class UserMerc extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center'
-	}
-});

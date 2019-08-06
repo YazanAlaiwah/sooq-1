@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, ScrollView, AsyncStorage } from 'react-native';
+import { View, ScrollView, AsyncStorage } from 'react-native';
 import Footer from '../footer';
 import Header from '../header';
 import UserMerc from './userMerc';
 import UserImage from './userImage';
 import UserInfo from './userInfo';
-// import console = require('console');
 export default class UserPage extends Component {
 	constructor(props) {
 		super(props);
@@ -20,13 +19,14 @@ export default class UserPage extends Component {
 	componentWillMount() {
 		AsyncStorage.getItem('userId')
 			.then((value) => {
+				//this part to have user Info
 				fetch(`http://192.168.0.14:3000/seeUserInfo?id=${value}`).then((data) => data.json()).then((data) =>
 					this.setState({
 						name: data.name,
 						img: data.img,
 						location: data.location
 					})
-				),
+				), //this part to have user items
 					fetch(`http://192.168.0.14:3000/seeUserMerc?id=${value}`)
 						.then((data) => data.json())
 						.then((data) => {
@@ -53,12 +53,3 @@ export default class UserPage extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center'
-	}
-});
