@@ -1,24 +1,8 @@
 import React from 'react';
-import {
-	StyleSheet,
-	Text,
-	View,
-	ScrollView,
-	Button,
-	Image,
-	TextInput,
-	KeyboardAvoidingView,
-	TouchableOpacity,
-	AsyncStorage,
-	ImageBackground
-} from 'react-native';
-import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Text, View, ScrollView, Image, TouchableOpacity, AsyncStorage, ImageBackground } from 'react-native';
 import Header from '../header';
 import Footer from '../footer';
-import { SliderBox } from 'react-native-image-slider-box';
 import { Actions } from 'react-native-router-flux';
-// import console = require('console');
-var arr = [];
 var id;
 export default class UserInfo extends React.Component {
 	constructor(props) {
@@ -34,6 +18,7 @@ export default class UserInfo extends React.Component {
 	componentWillMount() {
 		AsyncStorage.getItem('userId')
 			.then((value) => {
+				// this part to have user info
 				fetch(`http://192.168.0.14:3000/seeUserInfo?id=${this.props.id}`)
 					.then((data) => data.json())
 					.then((data) =>
@@ -43,10 +28,10 @@ export default class UserInfo extends React.Component {
 							location: data.location
 						})
 					),
+					// this part to have user items
 					fetch(`http://192.168.0.14:3000/seeUserMerc?id=${this.props.id}`)
 						.then((data) => data.json())
 						.then((data) => {
-							// console≥\.warn(data);
 							this.setState({ Merc: data });
 						});
 			})
@@ -54,6 +39,7 @@ export default class UserInfo extends React.Component {
 				console.warn(error);
 			});
 	}
+	// this part to the comments in the database
 	test() {
 		fetch('http://192.168.0.14:3000/addcommint', {
 			method: 'POST',

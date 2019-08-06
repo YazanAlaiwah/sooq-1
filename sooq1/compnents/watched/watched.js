@@ -1,7 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, AsyncStorage } from 'react-native';
+import { Text, View, Image, TouchableOpacity, ScrollView, AsyncStorage } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-// import console = require('console');
 import Header from '../header';
 var id;
 export default class Watched extends React.Component {
@@ -11,7 +10,7 @@ export default class Watched extends React.Component {
 			Merc: []
 		};
 	}
-
+	//this part to show what the user have watched
 	componentWillMount() {
 		AsyncStorage.getItem('userId')
 			.then((value) => {
@@ -23,6 +22,7 @@ export default class Watched extends React.Component {
 				console.warn(error);
 			});
 	}
+	// this part to navigate the user to the item page and save that he click on it
 	ItemPage(id) {
 		AsyncStorage.getItem('userId')
 			.then((value) => {
