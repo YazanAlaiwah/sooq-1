@@ -1,8 +1,18 @@
 # SOOQ #
- > an app that enables the user to buy and sell things in one place and simple way
+ > an app that enables the user to buy and sell things in one place and simple way.
 
 ## Problem ##
-> you have no time to sell or buy your things SOOQ have the solution here you can buy and sell easily and one place and the important thing it's free
+> you have no time to sell or buy your things SOOQ have the solution here you can buy and sell easily and one place and the important thing it's free.
+
+## Requirements ##
+* NodeJS
+* expo
+* npm
+* yarn
+
+## Stack ##
+* frontend: React Native
+* backend: NodeJs, firebase, mysql, and sequelize
 
 ## How to Get Started ##
 * npm install -g expo-cli in terminal
