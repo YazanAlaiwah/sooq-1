@@ -1,8 +1,8 @@
 # SOOQ #
- > an app able the user to buy and sell things in one place and easy way
+ > an app that enables the user to buy and sell things in one place and simple way
 
 ## Problem ##
-> you have no time to sell or buy your things SOOQ have the soultion here you can buy and sell in easy way and one place and the important thing its free
+> you have no time to sell or buy your things SOOQ have the solution here you can buy and sell easily and one place and the important thing it's free
 
 ## How to Get Started ##
 * npm install -g expo-cli in terminal.
