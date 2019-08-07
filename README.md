@@ -2,7 +2,8 @@
  > an app that enables the user to buy and sell things in one place and simple way.
 
 ## Problem ##
-> you have no time to sell or buy your things SOOQ have the solution here you can buy and sell easily and one place and the important thing it's free.
+> you have no time to sell or buy your things.
+>SOOQ has the solution here you can buy and sell easily and one place and best of all, it's free.
 
 ## Requirements ##
 * NodeJS
